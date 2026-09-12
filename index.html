@@ -419,79 +419,287 @@ function removerAgendamento(index){
 
 function responder(){
 
-  const pergunta =
-  document.getElementById("pergunta").value.trim();
+  const campo = document.getElementById("pergunta");
+  const pergunta = campo.value.trim();
 
   if(!pergunta) return;
 
-  const chat =
-  document.getElementById("chat");
+  const chat = document.getElementById("chat");
 
-  chat.innerHTML +=
-  `<p><b>👤 Você:</b> ${pergunta}</p>`;
+  chat.innerHTML += `
+    <p><b>👤 Você:</b> ${pergunta}</p>
+  `;
 
-  let resposta =
-  "Posso ajudar com informações sobre a clínica, serviços e agendamentos.";
+  // Recupera configurações da IA
+  const ia = JSON.parse(
+    localStorage.getItem("configIAAtendeIA") || "{}"
+  );
 
-  const p = pergunta.toLowerCase();
+  const clinica = JSON.parse(
+    localStorage.getItem("clinicaAtendeIA") || "{}"
+  );
 
-  if(p.includes("preço") || p.includes("valor")){
+  const p = pergunta
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
 
-    if(servicos.length > 0){
+  let resposta = "";
 
-      resposta = "Nossos serviços disponíveis são:<br>";
+  // =========================
+  // SAUDAÇÕES
+  // =========================
 
-      servicos.forEach(s=>{
-        resposta +=
-        "• " + s.nome + " — " +
-        (s.preco || "consulte o valor") +
-        "<br>";
-      });
+  if(
+    p === "oi" ||
+    p === "ola" ||
+    p.includes("bom dia") ||
+    p.includes("boa tarde") ||
+    p.includes("boa noite")
+  ){
+
+    resposta =
+      ia.mensagem ||
+      "Olá! 😊 Sou a Ana, assistente virtual. Como posso ajudar você?";
+
+  }
+
+  // =========================
+  // SERVIÇOS
+  // =========================
+
+  else if(
+    p.includes("servico") ||
+    p.includes("servicos") ||
+    p.includes("o que voces fazem") ||
+    p.includes("o que tem") ||
+    p.includes("procedimento")
+  ){
+
+    if(servicos.length === 0){
+
+      resposta =
+        "No momento ainda não temos serviços cadastrados.";
 
     }else{
-      resposta =
-      "Ainda não temos serviços cadastrados.";
+
+      resposta = "Claro! 😊 Nossos serviços são:<br><br>";
+
+      servicos.forEach(s => {
+
+        resposta +=
+          "🩺 <b>" + s.nome + "</b>";
+
+        if(s.preco){
+          resposta += " — " + s.preco;
+        }
+
+        resposta += "<br>";
+      });
+
+      resposta +=
+        "<br>Se quiser, posso informar o valor de um serviço específico.";
+
     }
   }
 
+  // =========================
+  // PREÇO / VALOR / TRATAMENTO
+  // =========================
+
   else if(
-    p.includes("horário") ||
+    p.includes("preco") ||
+    p.includes("valor") ||
+    p.includes("quanto custa") ||
+    p.includes("tratamento")
+  ){
+
+    let encontrados = [];
+
+    servicos.forEach(s => {
+
+      const nomeServico = s.nome
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+
+      if(
+        p.includes(nomeServico) ||
+        p.includes("tratamento")
+      ){
+        encontrados.push(s);
+      }
+
+    });
+
+    if(encontrados.length > 0){
+
+      resposta = "";
+
+      encontrados.forEach(s => {
+
+        resposta +=
+          "🩺 <b>" + s.nome + "</b><br>" +
+          "💰 Valor: " +
+          (s.preco || "valor não informado") +
+          "<br><br>";
+
+      });
+
+      resposta +=
+        "Deseja saber mais sobre esse serviço ou gostaria de agendar? 😊";
+
+    }else{
+
+      if(servicos.length > 0){
+
+        resposta =
+          "Claro! 😊 Confira nossos serviços e valores:<br><br>";
+
+        servicos.forEach(s => {
+
+          resposta +=
+            "🩺 <b>" + s.nome + "</b> — " +
+            (s.preco || "consulte o valor") +
+            "<br>";
+
+        });
+
+      }else{
+
+        resposta =
+          "O serviço ainda não está cadastrado. Por favor, informe qual tratamento você deseja conhecer.";
+
+      }
+    }
+  }
+
+  // =========================
+  // HORÁRIO
+  // =========================
+
+  else if(
+    p.includes("horario") ||
     p.includes("abre") ||
-    p.includes("funciona")
+    p.includes("funciona") ||
+    p.includes("atendimento")
   ){
 
-    const clinica =
-    JSON.parse(
-      localStorage.getItem("clinicaAtendeIA") || "{}"
-    );
-
     resposta =
-    clinica.horario ||
-    "O horário da clínica ainda não foi cadastrado.";
+      clinica.horario ||
+      "O horário de atendimento ainda não foi cadastrado.";
+
   }
+
+  // =========================
+  // ENDEREÇO
+  // =========================
 
   else if(
-    p.includes("endereço") ||
-    p.includes("onde")
+    p.includes("endereco") ||
+    p.includes("onde fica") ||
+    p.includes("localizacao") ||
+    p.includes("local")
   ){
 
-    const clinica =
-    JSON.parse(
-      localStorage.getItem("clinicaAtendeIA") || "{}"
-    );
-
     resposta =
-    clinica.endereco ||
-    "O endereço ainda não foi cadastrado.";
+      clinica.endereco ||
+      "O endereço da clínica ainda não foi cadastrado.";
+
   }
 
-  chat.innerHTML +=
-  `<p><b>🤖 Atendente:</b> ${resposta}</p>`;
+  // =========================
+  // AGENDAMENTO
+  // =========================
 
-  document.getElementById("pergunta").value="";
+  else if(
+    p.includes("agendar") ||
+    p.includes("agendamento") ||
+    p.includes("marcar") ||
+    p.includes("consulta")
+  ){
 
-  chat.scrollTop=chat.scrollHeight;
+    resposta =
+      "Claro! 😊 Posso ajudar com o agendamento.<br><br>" +
+      "Por favor, me informe:<br>" +
+      "👤 Seu nome<br>" +
+      "🩺 O serviço desejado<br>" +
+      "📅 O dia de preferência<br>" +
+      "⏰ O horário de preferência";
+
+  }
+
+  // =========================
+  // CANCELAMENTO
+  // =========================
+
+  else if(
+    p.includes("cancelar") ||
+    p.includes("cancelamento")
+  ){
+
+    resposta =
+      "Posso ajudar com o cancelamento. 😊 " +
+      "Informe seu nome e os dados do agendamento.";
+
+  }
+
+  // =========================
+  // AGRADECIMENTO
+  // =========================
+
+  else if(
+    p.includes("obrigado") ||
+    p.includes("obrigada") ||
+    p.includes("valeu")
+  ){
+
+    resposta =
+      "Por nada! 😊 Estou à disposição para ajudar.";
+
+  }
+
+  // =========================
+  // DESPEDIDA
+  // =========================
+
+  else if(
+    p.includes("tchau") ||
+    p.includes("ate mais") ||
+    p.includes("até mais")
+  ){
+
+    resposta =
+      "Até mais! 😊 Quando precisar, estarei aqui para ajudar.";
+
+  }
+
+  // =========================
+  // RESPOSTA INTELIGENTE PADRÃO
+  // =========================
+
+  else{
+
+    resposta =
+      "Entendi! 😊 Posso ajudar você com:<br><br>" +
+      "🩺 Serviços e valores<br>" +
+      "📅 Agendamentos<br>" +
+      "⏰ Horários de atendimento<br>" +
+      "📍 Endereço da clínica<br><br>" +
+      "O que você gostaria de saber?";
+
+  }
+
+  // Mostra resposta
+  chat.innerHTML += `
+    <p><b>🤖 ${ia.nome || "Ana"}:</b> ${resposta}</p>
+  `;
+
+  campo.value = "";
+
+  chat.scrollTop = chat.scrollHeight;
 }
+  
 
 
 function mostrarResumo(){
