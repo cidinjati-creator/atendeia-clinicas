@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AtendeIA - Clínicas</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: #f4f6f8;
+      color: #222;
+    }
+
+    header {
+      background: #1769aa;
+      color: white;
+      padding: 22px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    header p {
+      margin: 8px 0 0;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 25px auto;
+      padding: 15px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 15px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      color: #1769aa;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 10px;
+      background: #1769aa;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .status {
+      color: #16803c;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🤖 AtendeIA</h1>
+  <p>Assistente inteligente para clínicas</p>
+</header>
+
+<div class="container">
+
+  <div class="card">
+    <h2>🏥 Minha Clínica</h2>
+    <p>Configure os dados da clínica e o atendimento automático.</p>
+    <button onclick="alert('Cadastro da clínica será criado na próxima versão.')">
+      Configurar clínica
+    </button>
+  </div>
+
+  <div class="card">
+    <h2>🤖 Atendente IA</h2>
+    <p class="status">● Sistema pronto para configuração</p>
+    <button onclick="alert('O treinamento da IA será configurado na próxima etapa.')">
+      Configurar IA
+    </button>
+  </div>
+
+  <div class="card">
+    <h2>📋 Serviços</h2>
+    <p>Cadastre consultas, exames e outros serviços da clínica.</p>
+    <button onclick="alert('Cadastro de serviços será criado na próxima etapa.')">
+      Cadastrar serviços
+    </button>
+  </div>
+
+  <div class="card">
+    <h2>📅 Agendamentos</h2>
+    <p>Organize os horários e atendimentos dos pacientes.</p>
+    <button onclick="alert('Sistema de agendamento será criado na próxima etapa.')">
+      Ver agendamentos
+    </button>
+  </div>
+
+</div>
+
+</body>
+</html>
