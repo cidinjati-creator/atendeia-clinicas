@@ -3,1941 +3,1714 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>AtendeIA - Gestão de Clínicas</title>
 
 <style>
-
-*{
-  box-sizing:border-box;
-  font-family:Arial,sans-serif;
+* {
+    box-sizing: border-box;
 }
 
-body{
-  margin:0;
-  background:#f3f6f9;
-  color:#222;
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #222;
 }
 
-header{
-  background:#1769aa;
-  color:white;
-  padding:24px 18px;
-  text-align:center;
+header {
+    background: #1565c0;
+    color: white;
+    padding: 20px;
+    text-align: center;
 }
 
-header h1{
-  margin:0;
-  font-size:30px;
+header h1 {
+    margin: 0;
+    font-size: 26px;
 }
 
-header p{
-  margin:8px 0 0;
+header p {
+    margin: 8px 0 0;
 }
 
-.container{
-  max-width:760px;
-  margin:auto;
-  padding:18px;
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 15px;
 }
 
-.card{
-  background:white;
-  border-radius:16px;
-  padding:20px;
-  margin-bottom:16px;
-  box-shadow:0 3px 12px rgba(0,0,0,.08);
+.card {
+    background: white;
+    margin-bottom: 18px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
-.card h2{
-  margin-top:0;
-  color:#1769aa;
+h2 {
+    margin-top: 0;
+    color: #1565c0;
 }
 
 input,
 textarea,
-select{
-
-  width:100%;
-  padding:13px;
-  margin:7px 0 12px;
-
-  border:1px solid #ccd4dc;
-
-  border-radius:9px;
-
-  font-size:15px;
+select {
+    width: 100%;
+    padding: 12px;
+    margin: 6px 0 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
 }
 
-button{
-
-  width:100%;
-
-  padding:14px;
-
-  margin-top:8px;
-
-  border:0;
-
-  border-radius:10px;
-
-  background:#1769aa;
-
-  color:white;
-
-  font-size:16px;
-
-  cursor:pointer;
+textarea {
+    min-height: 100px;
+    resize: vertical;
 }
 
-button.secundario{
-
-  background:#e8eef3;
-
-  color:#1769aa;
+button {
+    border: none;
+    padding: 12px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    margin: 4px;
+    background: #1565c0;
+    color: white;
 }
 
-button.perigo{
-
-  background:#c62828;
+button:hover {
+    opacity: 0.9;
 }
 
-.item{
-
-  border:1px solid #ddd;
-
-  border-radius:10px;
-
-  padding:12px;
-
-  margin-top:10px;
+.btn-danger {
+    background: #d32f2f;
 }
 
-.menu{
-
-  display:grid;
-
-  grid-template-columns:1fr 1fr;
-
-  gap:10px;
+.btn-green {
+    background: #2e7d32;
 }
 
-@media(max-width:500px){
-
-  .menu{
-
-    grid-template-columns:1fr;
-  }
+.btn-gray {
+    background: #666;
 }
 
-#chat{
-
-  background:#f1f3f5;
-
-  padding:15px;
-
-  border-radius:10px;
-
-  min-height:120px;
-
-  margin-bottom:10px;
-
-  max-height:450px;
-
-  overflow-y:auto;
+.item {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
 }
 
-.mensagem{
-
-  padding:10px;
-
-  margin:8px 0;
-
-  border-radius:10px;
-
+.item:last-child {
+    border-bottom: none;
 }
 
-.usuario{
-
-  background:#dceeff;
+.chat {
+    background: #eef3f8;
+    padding: 15px;
+    border-radius: 10px;
+    min-height: 250px;
+    max-height: 450px;
+    overflow-y: auto;
 }
 
-.atendente{
-
-  background:#ffffff;
-
-  border:1px solid #ddd;
+.mensagem {
+    margin: 8px 0;
+    padding: 10px 13px;
+    border-radius: 12px;
+    max-width: 85%;
+    line-height: 1.4;
 }
 
+.usuario {
+    background: #d1e7ff;
+    margin-left: auto;
+    text-align: right;
+}
+
+.ana {
+    background: white;
+    margin-right: auto;
+}
+
+.chat-input {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.chat-input input {
+    margin: 0;
+    flex: 1;
+}
+
+.resumo {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.box {
+    background: #e3f2fd;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.box strong {
+    display: block;
+    font-size: 25px;
+    color: #1565c0;
+}
+
+.alerta {
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 10px;
+    background: #fff3cd;
+    color: #856404;
+}
+
+.sucesso {
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 10px;
+    background: #d4edda;
+    color: #155724;
+}
+
+@media (max-width: 600px) {
+    .resumo {
+        grid-template-columns: 1fr;
+    }
+
+    .chat-input {
+        flex-direction: column;
+    }
+
+    .chat-input button {
+        width: 100%;
+        margin: 0;
+    }
+}
 </style>
 </head>
 
 <body>
 
-
 <header>
-
-  <h1>🤖 AtendeIA</h1>
-
-  <p>Assistente inteligente para clínicas</p>
-
+    <h1>AtendeIA</h1>
+    <p>Gestão de Clínicas com Ana - Assistente Virtual</p>
 </header>
-
 
 <div class="container">
 
+    <!-- DADOS DA CLÍNICA -->
+    <div class="card">
+        <h2>🏥 Dados da Clínica</h2>
 
-<!-- =========================
-     DADOS DA CLÍNICA
-========================= -->
+        <label>Nome da clínica</label>
+        <input id="nomeClinica" placeholder="Nome da clínica">
 
-<div class="card">
+        <label>Telefone / WhatsApp</label>
+        <input id="telefoneClinica" placeholder="Telefone ou WhatsApp">
 
-<h2>🏥 Dados da Clínica</h2>
+        <label>Endereço</label>
+        <input id="enderecoClinica" placeholder="Endereço">
 
-<label>Nome da clínica</label>
+        <label>Horário de atendimento</label>
+        <input id="horarioClinica" placeholder="Ex.: Segunda a sexta, 08:00 às 18:00">
 
-<input
-  id="clinica"
-  placeholder="Ex.: Clínica Saúde Mais"
->
+        <button onclick="salvarClinica()">Salvar dados da clínica</button>
 
+        <div id="msgClinica"></div>
+    </div>
 
-<label>Telefone / WhatsApp</label>
 
-<input
-  id="telefone"
-  placeholder="Ex.: (83) 99999-9999"
->
+    <!-- CONFIGURAÇÃO DA ANA -->
+    <div class="card">
+        <h2>🤖 Configuração do Atendente IA</h2>
 
+        <label>Nome do atendente</label>
+        <input id="nomeIA" placeholder="Ex.: Ana">
 
-<label>Endereço</label>
+        <label>Mensagem inicial</label>
+        <textarea id="mensagemIA"></textarea>
 
-<input
-  id="endereco"
-  placeholder="Endereço da clínica"
->
+        <label>Instruções para o atendente</label>
+        <textarea id="instrucoesIA"></textarea>
 
+        <button onclick="salvarIA()">Salvar configuração da IA</button>
 
-<label>Horário de atendimento</label>
+        <div id="msgIA"></div>
+    </div>
 
-<input
-  id="horario"
-  placeholder="Ex.: Segunda a sexta, 08h às 18h"
->
 
+    <!-- SERVIÇOS -->
+    <div class="card">
+        <h2>💰 Serviços da Clínica</h2>
 
-<button onclick="salvarClinica()">
+        <label>Nome do serviço</label>
+        <input id="nomeServico" placeholder="Ex.: Tratamento">
 
-  Salvar dados da clínica
+        <label>Valor</label>
+        <input id="valorServico" placeholder="Ex.: 120,00">
 
-</button>
+        <button onclick="adicionarServico()">Adicionar serviço</button>
 
+        <div id="listaServicos"></div>
+    </div>
 
-<p id="statusClinica"></p>
 
-</div>
+    <!-- AGENDAMENTOS -->
+    <div class="card">
+        <h2>📅 Agendamentos</h2>
 
+        <label>Paciente</label>
+        <input id="pacienteAgendamento" placeholder="Nome do paciente">
 
-<!-- =========================
-     CONFIGURAÇÃO DA IA
-========================= -->
+        <label>Data</label>
+        <input id="dataAgendamento" type="date">
 
-<div class="card">
+        <label>Horário</label>
+        <input id="horaAgendamento" type="time">
 
-<h2>🤖 Configuração do Atendente IA</h2>
+        <label>Serviço</label>
+        <select id="servicoAgendamento">
+            <option value="">Selecione o serviço</option>
+        </select>
 
+        <button class="btn-green" onclick="adicionarAgendamentoManual()">
+            Adicionar agendamento
+        </button>
 
-<label>Nome do atendente</label>
+        <div id="listaAgendamentos"></div>
+    </div>
 
-<input
-  id="nomeIA"
-  placeholder="Ex.: Ana"
->
 
+    <!-- CHAT -->
+    <div class="card">
+        <h2>💬 Chat da Ana</h2>
 
-<label>Mensagem inicial</label>
+        <button class="btn-gray" onclick="novoAtendimento()">
+            Novo atendimento
+        </button>
 
-<textarea
-  id="mensagemIA"
-  rows="4"
-  placeholder="Olá! Seja bem-vindo à nossa clínica. Como posso ajudar?"
-></textarea>
+        <div id="chat" class="chat"></div>
 
+        <div class="chat-input">
+            <input
+                id="mensagemUsuario"
+                placeholder="Digite sua mensagem..."
+                onkeydown="if(event.key === 'Enter') enviarMensagem()"
+            >
 
-<label>Instruções para o atendente</label>
-
-<textarea
-  id="instrucoes"
-  rows="8"
-  placeholder="Informe as regras de atendimento da Ana."
-></textarea>
-
-
-<button onclick="salvarIA()">
-
-  Salvar configuração da IA
-
-</button>
-
-
-<p id="statusIA"></p>
-
-</div>
-
-
-<!-- =========================
-     SERVIÇOS
-========================= -->
-
-<div class="card">
-
-<h2>🩺 Serviços da Clínica</h2>
-
-
-<label>Nome do serviço</label>
-
-<input
-  id="servico"
-  placeholder="Ex.: Tratamento"
->
-
-
-<label>Preço</label>
-
-<input
-  id="preco"
-  placeholder="Ex.: R$ 120,00"
->
-
-
-<button onclick="adicionarServico()">
-
-  Adicionar serviço
-
-</button>
-
-
-<div id="listaServicos"></div>
-
-</div>
-
-
-<!-- =========================
-     AGENDAMENTOS
-========================= -->
-
-<div class="card">
-
-<h2>📅 Agendamentos</h2>
-
-
-<label>Nome do paciente</label>
-
-<input
-  id="paciente"
-  placeholder="Nome completo"
->
-
-
-<label>Data</label>
-
-<input
-  id="data"
-  type="date"
->
-
-
-<label>Horário</label>
-
-<input
-  id="hora"
-  type="time"
->
-
-
-<label>Serviço</label>
-
-<input
-  id="servicoAgendamento"
-  placeholder="Ex.: Tratamento"
->
-
-
-<button onclick="adicionarAgendamento()">
-
-  Cadastrar agendamento
-
-</button>
-
-
-<div id="listaAgendamentos"></div>
-
-</div>
-
-
-<!-- =========================
-     CHAT
-========================= -->
-
-<div class="card">
-
-<h2>💬 Ana — Atendimento</h2>
-
-<p>
-Teste aqui a conversa com a sua atendente.
-</p>
-
-
-<div id="chat">
-
-<div class="mensagem atendente">
-
-<b>🤖 Ana:</b>
-
-Olá! 😊 Como posso ajudar você?
-
-</div>
-
-</div>
-
-
-<input
-  id="pergunta"
-  placeholder="Digite uma mensagem..."
-  onkeydown="if(event.key==='Enter') responder()"
->
-
-
-<button onclick="responder()">
-
-  Enviar mensagem
-
-</button>
-
-
-<button
-  class="secundario"
-  onclick="novoAtendimento()"
->
-
-  🔄 Novo atendimento
-
-</button>
-
-</div>
-
-
-<!-- =========================
-     PAINEL
-========================= -->
-
-<div class="card">
-
-<h2>📊 Painel</h2>
-
-
-<div class="menu">
-
-<button onclick="mostrarResumo()">
-
-  Ver resumo
-
-</button>
-
-
-<button
-  class="secundario"
-  onclick="limparDados()"
->
-
-  Limpar dados
-
-</button>
-
-</div>
-
-
-<div
-  id="resumo"
-  style="margin-top:15px;"
-></div>
-
-</div>
-
+            <button onclick="enviarMensagem()">Enviar</button>
+        </div>
+    </div>
+
+
+    <!-- RESUMO -->
+    <div class="card">
+        <h2>📊 Resumo</h2>
+
+        <div class="resumo">
+            <div class="box">
+                <strong id="totalServicos">0</strong>
+                Serviços
+            </div>
+
+            <div class="box">
+                <strong id="totalAgendamentos">0</strong>
+                Agendamentos
+            </div>
+
+            <div class="box">
+                <strong id="totalHoje">0</strong>
+                Hoje
+            </div>
+        </div>
+    </div>
 
 </div>
 
 
 <script>
 
-
-/* =====================================
+/* =====================================================
    DADOS
-===================================== */
-
+===================================================== */
 
 let servicos = JSON.parse(
-
-  localStorage.getItem(
-    "servicosAtendeIA"
-  ) || "[]"
-
+    localStorage.getItem("servicosAtendeIA") || "[]"
 );
-
 
 let agendamentos = JSON.parse(
-
-  localStorage.getItem(
-    "agendamentosAtendeIA"
-  ) || "[]"
-
+    localStorage.getItem("agendamentosAtendeIA") || "[]"
 );
 
-
-/* =====================================
-   ESTADO DA CONVERSA
-===================================== */
-
-
 let estadoAgendamento = {
-
-  ativo:false,
-
-  etapa:"",
-
-  paciente:"",
-
-  servico:"",
-
-  data:"",
-
-  hora:""
-
+    ativo: false,
+    etapa: "",
+    paciente: "",
+    servico: "",
+    data: "",
+    hora: ""
 };
 
 
-/* =====================================
+/* =====================================================
    NORMALIZAR TEXTO
-===================================== */
+===================================================== */
 
+function normalizarTexto(texto) {
 
-function normalizarTexto(texto){
-
-  return texto
-
-    .toLowerCase()
-
-    .normalize("NFD")
-
-    .replace(
-      /[\u0300-\u036f]/g,
-      ""
-    )
-
-    .trim();
-
+    return texto
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .trim();
 }
 
 
-/* =====================================
-   SALVAR CLÍNICA
-===================================== */
+/* =====================================================
+   FORMATAR DATA
+===================================================== */
 
+function formatarData(data) {
 
-function salvarClinica(){
+    if (!data) return "";
 
-  const dados = {
+    let partes = data.split("-");
 
-    nome:
-      document.getElementById(
-        "clinica"
-      ).value.trim(),
-
-    telefone:
-      document.getElementById(
-        "telefone"
-      ).value.trim(),
-
-    endereco:
-      document.getElementById(
-        "endereco"
-      ).value.trim(),
-
-    horario:
-      document.getElementById(
-        "horario"
-      ).value.trim()
-
-  };
-
-
-  localStorage.setItem(
-
-    "clinicaAtendeIA",
-
-    JSON.stringify(dados)
-
-  );
-
-
-  document.getElementById(
-    "statusClinica"
-  ).innerHTML =
-    "✅ Dados da clínica salvos com sucesso.";
-
-}
-
-
-/* =====================================
-   SALVAR IA
-===================================== */
-
-
-function salvarIA(){
-
-  const dados = {
-
-    nome:
-      document.getElementById(
-        "nomeIA"
-      ).value.trim(),
-
-    mensagem:
-      document.getElementById(
-        "mensagemIA"
-      ).value.trim(),
-
-    instrucoes:
-      document.getElementById(
-        "instrucoes"
-      ).value.trim()
-
-  };
-
-
-  localStorage.setItem(
-
-    "configIAAtendeIA",
-
-    JSON.stringify(dados)
-
-  );
-
-
-  document.getElementById(
-    "statusIA"
-  ).innerHTML =
-    "✅ Configuração do atendente salva.";
-
-}
-
-
-/* =====================================
-   ADICIONAR SERVIÇO
-===================================== */
-
-
-function adicionarServico(){
-
-  const nome =
-    document.getElementById(
-      "servico"
-    ).value.trim();
-
-
-  const preco =
-    document.getElementById(
-      "preco"
-    ).value.trim();
-
-
-  if(!nome){
-
-    alert(
-      "Digite o nome do serviço."
-    );
-
-    return;
-
-  }
-
-
-  servicos.push({
-
-    nome:nome,
-
-    preco:preco
-
-  });
-
-
-  localStorage.setItem(
-
-    "servicosAtendeIA",
-
-    JSON.stringify(servicos)
-
-  );
-
-
-  document.getElementById(
-    "servico"
-  ).value="";
-
-
-  document.getElementById(
-    "preco"
-  ).value="";
-
-
-  mostrarServicos();
-
-}
-
-
-/* =====================================
-   MOSTRAR SERVIÇOS
-===================================== */
-
-
-function mostrarServicos(){
-
-  const lista =
-    document.getElementById(
-      "listaServicos"
-    );
-
-
-  lista.innerHTML="";
-
-
-  servicos.forEach(
-    (s,index)=>{
-
-      lista.innerHTML += `
-
-        <div class="item">
-
-          <b>${s.nome}</b>
-
-          <br>
-
-          ${
-            s.preco ||
-            "Preço não informado"
-          }
-
-
-          <button
-            class="perigo"
-            onclick="removerServico(${index})"
-          >
-
-            Remover
-
-          </button>
-
-        </div>
-
-      `;
-
+    if (partes.length !== 3) {
+        return data;
     }
-  );
 
+    return `${partes[2]}/${partes[1]}/${partes[0]}`;
 }
 
 
-/* =====================================
-   REMOVER SERVIÇO
-===================================== */
+/* =====================================================
+   FORMATAR VALOR
+===================================================== */
 
+function formatarValor(valor) {
 
-function removerServico(index){
-
-  servicos.splice(
-    index,
-    1
-  );
-
-
-  localStorage.setItem(
-
-    "servicosAtendeIA",
-
-    JSON.stringify(servicos)
-
-  );
-
-
-  mostrarServicos();
-
-}
-
-
-/* =====================================
-   ADICIONAR AGENDAMENTO MANUAL
-===================================== */
-
-
-function adicionarAgendamento(){
-
-  const paciente =
-    document.getElementById(
-      "paciente"
-    ).value.trim();
-
-
-  const data =
-    document.getElementById(
-      "data"
-    ).value;
-
-
-  const hora =
-    document.getElementById(
-      "hora"
-    ).value;
-
-
-  const servico =
-    document.getElementById(
-      "servicoAgendamento"
-    ).value.trim();
-
-
-  if(
-    !paciente ||
-    !data ||
-    !hora
-  ){
-
-    alert(
-      "Preencha paciente, data e horário."
+    let numero = Number(
+        String(valor)
+            .replace("R$", "")
+            .replace(/\./g, "")
+            .replace(",", ".")
+            .trim()
     );
 
-    return;
-
-  }
-
-
-  agendamentos.push({
-
-    paciente:paciente,
-
-    data:data,
-
-    hora:hora,
-
-    servico:servico
-
-  });
-
-
-  localStorage.setItem(
-
-    "agendamentosAtendeIA",
-
-    JSON.stringify(
-      agendamentos
-    )
-
-  );
-
-
-  document.getElementById(
-    "paciente"
-  ).value="";
-
-
-  document.getElementById(
-    "data"
-  ).value="";
-
-
-  document.getElementById(
-    "hora"
-  ).value="";
-
-
-  document.getElementById(
-    "servicoAgendamento"
-  ).value="";
-
-
-  mostrarAgendamentos();
-
-}
-
-
-/* =====================================
-   MOSTRAR AGENDAMENTOS
-===================================== */
-
-
-function mostrarAgendamentos(){
-
-  const lista =
-    document.getElementById(
-      "listaAgendamentos"
-    );
-
-
-  lista.innerHTML="";
-
-
-  agendamentos.forEach(
-    (a,index)=>{
-
-      lista.innerHTML += `
-
-        <div class="item">
-
-          <b>
-            ${a.paciente}
-          </b>
-
-          <br>
-
-          📅 ${a.data}
-
-          às
-
-          ${a.hora}
-
-          <br>
-
-          🩺 ${
-            a.servico ||
-            "Serviço não informado"
-          }
-
-
-          <button
-            class="perigo"
-            onclick="removerAgendamento(${index})"
-          >
-
-            Cancelar
-
-          </button>
-
-        </div>
-
-      `;
-
+    if (isNaN(numero)) {
+        return valor;
     }
-  );
 
+    return numero.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+    });
 }
 
 
-/* =====================================
-   REMOVER AGENDAMENTO
-===================================== */
+/* =====================================================
+   CLÍNICA
+===================================================== */
 
+function salvarClinica() {
 
-function removerAgendamento(index){
+    let dados = {
+        nome: document.getElementById("nomeClinica").value,
+        telefone: document.getElementById("telefoneClinica").value,
+        endereco: document.getElementById("enderecoClinica").value,
+        horario: document.getElementById("horarioClinica").value
+    };
 
-  agendamentos.splice(
-    index,
-    1
-  );
+    localStorage.setItem(
+        "clinicaAtendeIA",
+        JSON.stringify(dados)
+    );
 
-
-  localStorage.setItem(
-
-    "agendamentosAtendeIA",
-
-    JSON.stringify(
-      agendamentos
-    )
-
-  );
-
-
-  mostrarAgendamentos();
-
+    document.getElementById("msgClinica").innerHTML =
+        '<div class="sucesso">✅ Dados da clínica salvos.</div>';
 }
 
 
-/* =====================================
-   NOVO ATENDIMENTO
-===================================== */
+/* =====================================================
+   CONFIGURAÇÃO DA IA
+===================================================== */
 
+function salvarIA() {
 
-function novoAtendimento(){
+    let config = {
+        nome: document.getElementById("nomeIA").value || "Ana",
 
-  estadoAgendamento = {
+        mensagem:
+            document.getElementById("mensagemIA").value ||
+            "Olá! Seja bem-vinda à nossa clínica! 😊 Sou a Ana, assistente virtual. Posso ajudar você com informações sobre nossos serviços, valores e agendamentos. Como posso ajudar você hoje?",
 
-    ativo:false,
+        instrucoes:
+            document.getElementById("instrucoesIA").value
+    };
 
-    etapa:"",
+    localStorage.setItem(
+        "configIAAtendeIA",
+        JSON.stringify(config)
+    );
 
-    paciente:"",
+    document.getElementById("msgIA").innerHTML =
+        '<div class="sucesso">✅ Configuração da Ana salva.</div>';
 
-    servico:"",
-
-    data:"",
-
-    hora:""
-
-  };
-
-
-  document.getElementById(
-    "chat"
-  ).innerHTML = `
-
-    <div class="mensagem atendente">
-
-      <b>🤖 Ana:</b>
-
-      Olá! 😊 Como posso ajudar você?
-
-    </div>
-
-  `;
-
+    iniciarChat();
 }
 
 
-/* =====================================
-   INICIAR AGENDAMENTO
-===================================== */
+/* =====================================================
+   SERVIÇOS
+===================================================== */
 
+function adicionarServico() {
 
-function iniciarAgendamento(){
+    let nome = document.getElementById("nomeServico").value.trim();
+    let valor = document.getElementById("valorServico").value.trim();
 
-  estadoAgendamento = {
+    if (!nome || !valor) {
+        alert("Informe o nome e o valor do serviço.");
+        return;
+    }
 
-    ativo:true,
+    servicos.push({
+        nome: nome,
+        valor: valor
+    });
 
-    etapa:"nome",
+    localStorage.setItem(
+        "servicosAtendeIA",
+        JSON.stringify(servicos)
+    );
 
-    paciente:"",
+    document.getElementById("nomeServico").value = "";
+    document.getElementById("valorServico").value = "";
 
-    servico:"",
-
-    data:"",
-
-    hora:""
-
-  };
-
-
-  return (
-
-    "Claro! 😊 Vamos fazer seu agendamento." +
-
-    "<br><br>" +
-
-    "Primeiro, qual é o seu <b>nome</b>?"
-
-  );
-
+    mostrarServicos();
+    atualizarSelectServicos();
+    mostrarResumo();
 }
 
 
-/* =====================================
-   RESPOSTA DA ANA
-===================================== */
+function removerServico(index) {
 
+    if (!confirm("Deseja remover este serviço?")) {
+        return;
+    }
 
-function responder(){
+    servicos.splice(index, 1);
 
-  const campo =
-    document.getElementById(
-      "pergunta"
+    localStorage.setItem(
+        "servicosAtendeIA",
+        JSON.stringify(servicos)
     );
 
-
-  const pergunta =
-    campo.value.trim();
-
-
-  if(!pergunta){
-
-    return;
-
-  }
+    mostrarServicos();
+    atualizarSelectServicos();
+    mostrarResumo();
+}
 
 
-  const chat =
-    document.getElementById(
-      "chat"
-    );
+function mostrarServicos() {
+
+    let div = document.getElementById("listaServicos");
+
+    if (servicos.length === 0) {
+        div.innerHTML = "<p>Nenhum serviço cadastrado.</p>";
+        return;
+    }
+
+    div.innerHTML = servicos.map((servico, index) => {
+
+        return `
+            <div class="item">
+                <strong>${servico.nome}</strong><br>
+                ${formatarValor(servico.valor)}
+                <br>
+                <button
+                    class="btn-danger"
+                    onclick="removerServico(${index})">
+                    Remover
+                </button>
+            </div>
+        `;
+
+    }).join("");
+}
 
 
-  chat.innerHTML += `
+function atualizarSelectServicos() {
 
-    <div class="mensagem usuario">
+    let select = document.getElementById("servicoAgendamento");
 
-      <b>👤 Você:</b>
+    select.innerHTML =
+        '<option value="">Selecione o serviço</option>';
 
-      ${pergunta}
+    servicos.forEach(servico => {
 
-    </div>
+        let option = document.createElement("option");
 
-  `;
+        option.value = servico.nome;
+        option.textContent =
+            `${servico.nome} - ${formatarValor(servico.valor)}`;
 
-
-  const ia =
-    JSON.parse(
-
-      localStorage.getItem(
-        "configIAAtendeIA"
-      ) || "{}"
-
-    );
+        select.appendChild(option);
+    });
+}
 
 
-  const clinica =
-    JSON.parse(
+/* =====================================================
+   VERIFICAR HORÁRIO OCUPADO
+===================================================== */
 
-      localStorage.getItem(
-        "clinicaAtendeIA"
-      ) || "{}"
+function horarioOcupado(data, hora) {
 
-    );
+    return agendamentos.some(agendamento => {
 
-
-  const p =
-    normalizarTexto(
-      pergunta
-    );
-
-
-  let resposta="";
-
-
-  /* =================================
-     AGENDAMENTO EM ANDAMENTO
-  ================================= */
-
-
-  if(
-    estadoAgendamento.ativo
-  ){
-
-
-    /* NOME */
-
-    if(
-      estadoAgendamento.etapa ===
-      "nome"
-    ){
-
-      estadoAgendamento.paciente =
-        pergunta;
-
-
-      estadoAgendamento.etapa =
-        "servico";
-
-
-      resposta =
-        "Prazer, " +
-        pergunta +
-        "! 😊<br><br>" +
-
-        "Qual serviço você deseja agendar?";
-
-
-      if(
-        servicos.length > 0
-      ){
-
-        resposta +=
-          "<br><br><b>Serviços disponíveis:</b><br>";
-
-
-        servicos.forEach(
-          s=>{
-
-            resposta +=
-              "🩺 " +
-              s.nome +
-              (
-                s.preco
-                ? " — " + s.preco
-                : ""
-              ) +
-              "<br>";
-
-          }
+        return (
+            agendamento.data === data &&
+            agendamento.hora === hora
         );
 
-      }
+    });
+}
 
+
+/* =====================================================
+   ENCONTRAR AGENDAMENTO
+===================================================== */
+
+function encontrarAgendamento(data, hora) {
+
+    return agendamentos.find(agendamento => {
+
+        return (
+            agendamento.data === data &&
+            agendamento.hora === hora
+        );
+
+    });
+}
+
+
+/* =====================================================
+   ADICIONAR AGENDAMENTO MANUAL
+===================================================== */
+
+function adicionarAgendamentoManual() {
+
+    let paciente =
+        document.getElementById("pacienteAgendamento").value.trim();
+
+    let data =
+        document.getElementById("dataAgendamento").value;
+
+    let hora =
+        document.getElementById("horaAgendamento").value;
+
+    let servico =
+        document.getElementById("servicoAgendamento").value;
+
+    if (!paciente || !data || !hora || !servico) {
+
+        alert("Preencha todos os campos do agendamento.");
+        return;
+    }
+
+    if (horarioOcupado(data, hora)) {
+
+        let existente =
+            encontrarAgendamento(data, hora);
+
+        alert(
+            `⚠️ Horário já ocupado!\n\n` +
+            `Data: ${formatarData(data)}\n` +
+            `Horário: ${hora}\n` +
+            `Paciente: ${existente.paciente}`
+        );
+
+        return;
+    }
+
+    agendamentos.push({
+        paciente: paciente,
+        data: data,
+        hora: hora,
+        servico: servico
+    });
+
+    localStorage.setItem(
+        "agendamentosAtendeIA",
+        JSON.stringify(agendamentos)
+    );
+
+    document.getElementById("pacienteAgendamento").value = "";
+    document.getElementById("dataAgendamento").value = "";
+    document.getElementById("horaAgendamento").value = "";
+    document.getElementById("servicoAgendamento").value = "";
+
+    mostrarAgendamentos();
+    mostrarResumo();
+
+    alert("✅ Agendamento realizado com sucesso!");
+}
+
+
+/* =====================================================
+   REMOVER AGENDAMENTO
+===================================================== */
+
+function removerAgendamento(index) {
+
+    if (!confirm("Deseja cancelar este agendamento?")) {
+        return;
+    }
+
+    agendamentos.splice(index, 1);
+
+    localStorage.setItem(
+        "agendamentosAtendeIA",
+        JSON.stringify(agendamentos)
+    );
+
+    mostrarAgendamentos();
+    mostrarResumo();
+}
+
+
+/* =====================================================
+   MOSTRAR AGENDAMENTOS
+===================================================== */
+
+function mostrarAgendamentos() {
+
+    let div =
+        document.getElementById("listaAgendamentos");
+
+    if (agendamentos.length === 0) {
+
+        div.innerHTML =
+            "<p>Nenhum agendamento cadastrado.</p>";
+
+        return;
+    }
+
+    let ordenados =
+        [...agendamentos].sort((a, b) => {
+
+            let dataA = `${a.data} ${a.hora}`;
+            let dataB = `${b.data} ${b.hora}`;
+
+            return dataA.localeCompare(dataB);
+        });
+
+    div.innerHTML = ordenados.map((agendamento) => {
+
+        let index =
+            agendamentos.indexOf(agendamento);
+
+        return `
+            <div class="item">
+
+                <strong>${agendamento.paciente}</strong><br>
+
+                📅 ${formatarData(agendamento.data)}
+                <br>
+
+                🕐 ${agendamento.hora}
+                <br>
+
+                💼 ${agendamento.servico}
+
+                <br>
+
+                <button
+                    class="btn-danger"
+                    onclick="removerAgendamento(${index})">
+                    Cancelar
+                </button>
+
+            </div>
+        `;
+
+    }).join("");
+}
+
+
+/* =====================================================
+   CHAT
+===================================================== */
+
+function adicionarMensagem(texto, tipo) {
+
+    let chat =
+        document.getElementById("chat");
+
+    let div =
+        document.createElement("div");
+
+    div.className =
+        `mensagem ${tipo}`;
+
+    div.innerHTML =
+        texto.replace(/\n/g, "<br>");
+
+    chat.appendChild(div);
+
+    chat.scrollTop =
+        chat.scrollHeight;
+}
+
+
+function iniciarChat() {
+
+    let config =
+        JSON.parse(
+            localStorage.getItem("configIAAtendeIA") || "{}"
+        );
+
+    let mensagem =
+        config.mensagem ||
+        "Olá! Seja bem-vinda à nossa clínica! 😊 Sou a Ana, assistente virtual. Posso ajudar você com informações sobre nossos serviços, valores e agendamentos. Como posso ajudar você hoje?";
+
+    let chat =
+        document.getElementById("chat");
+
+    chat.innerHTML = "";
+
+    adicionarMensagem(
+        mensagem,
+        "ana"
+    );
+}
+
+
+function novoAtendimento() {
+
+    estadoAgendamento = {
+        ativo: false,
+        etapa: "",
+        paciente: "",
+        servico: "",
+        data: "",
+        hora: ""
+    };
+
+    iniciarChat();
+}
+
+
+/* =====================================================
+   INICIAR AGENDAMENTO
+===================================================== */
+
+function iniciarAgendamento() {
+
+    if (servicos.length === 0) {
+
+        adicionarMensagem(
+            "No momento ainda não há serviços cadastrados. Por favor, cadastre um serviço antes de realizar o agendamento.",
+            "ana"
+        );
+
+        return;
+    }
+
+    estadoAgendamento = {
+
+        ativo: true,
+
+        etapa: "nome",
+
+        paciente: "",
+
+        servico: "",
+
+        data: "",
+
+        hora: ""
+    };
+
+    adicionarMensagem(
+        "Claro! 😊 Vamos fazer seu agendamento.\n\nQual é o seu nome?",
+        "ana"
+    );
+}
+
+
+/* =====================================================
+   MOSTRAR SERVIÇOS PARA O CLIENTE
+===================================================== */
+
+function textoServicos() {
+
+    if (servicos.length === 0) {
+
+        return "No momento não temos serviços cadastrados.";
+    }
+
+    let texto =
+        "Claro! 😊 Estes são nossos serviços:\n\n";
+
+    servicos.forEach(servico => {
+
+        texto +=
+            `• ${servico.nome} — ${formatarValor(servico.valor)}\n`;
+    });
+
+    return texto;
+}
+
+
+/* =====================================================
+   PROCESSAR AGENDAMENTO
+===================================================== */
+
+function processarAgendamento(textoOriginal) {
+
+    let texto =
+        textoOriginal.trim();
+
+    let normalizado =
+        normalizarTexto(texto);
+
+
+    /* -------------------------
+       ETAPA: NOME
+    ------------------------- */
+
+    if (estadoAgendamento.etapa === "nome") {
+
+        estadoAgendamento.paciente =
+            texto;
+
+        estadoAgendamento.etapa =
+            "servico";
+
+        adicionarMensagem(
+            `Prazer, ${texto}! 😊\n\nQual serviço você deseja agendar?\n\n${textoServicos()}`,
+            "ana"
+        );
+
+        return;
     }
 
 
-    /* SERVIÇO */
+    /* -------------------------
+       ETAPA: SERVIÇO
+    ------------------------- */
 
-    else if(
-      estadoAgendamento.etapa ===
-      "servico"
-    ){
+    if (estadoAgendamento.etapa === "servico") {
 
-      let encontrado=null;
+        let servicoEncontrado =
+            servicos.find(servico => {
+
+                return normalizarTexto(servico.nome)
+                    === normalizado;
+
+            });
 
 
-      servicos.forEach(
-        s=>{
+        /* Se não encontrou pelo nome exato,
+           procura se o texto contém o nome */
 
-          const nome =
-            normalizarTexto(
-              s.nome
+        if (!servicoEncontrado) {
+
+            servicoEncontrado =
+                servicos.find(servico => {
+
+                    return normalizado.includes(
+                        normalizarTexto(servico.nome)
+                    );
+
+                });
+        }
+
+
+        if (!servicoEncontrado) {
+
+            adicionarMensagem(
+                "Não encontrei esse serviço cadastrado. 😊\n\n" +
+                textoServicos() +
+                "\n\nDigite exatamente o nome do serviço que deseja.",
+                "ana"
+            );
+
+            return;
+        }
+
+        estadoAgendamento.servico =
+            servicoEncontrado.nome;
+
+        estadoAgendamento.etapa =
+            "data";
+
+        adicionarMensagem(
+            `Perfeito! Você escolheu ${servicoEncontrado.nome} — ${formatarValor(servicoEncontrado.valor)}.\n\nQual data você deseja? Digite no formato DD/MM/AAAA.`,
+            "ana"
+        );
+
+        return;
+    }
+
+
+    /* -------------------------
+       ETAPA: DATA
+    ------------------------- */
+
+    if (estadoAgendamento.etapa === "data") {
+
+        let dataValida =
+            converterDataParaISO(texto);
+
+        if (!dataValida) {
+
+            adicionarMensagem(
+                "Não consegui identificar a data. 😕\n\nDigite assim, por exemplo:\n20/09/2026",
+                "ana"
+            );
+
+            return;
+        }
+
+        if (dataPassou(dataValida)) {
+
+            adicionarMensagem(
+                "Essa data já passou. 📅\n\nPor favor, informe uma data futura.",
+                "ana"
+            );
+
+            return;
+        }
+
+        estadoAgendamento.data =
+            dataValida;
+
+        estadoAgendamento.etapa =
+            "hora";
+
+        adicionarMensagem(
+            `Ótimo! Data escolhida: ${formatarData(dataValida)}.\n\nQual horário você deseja? Digite, por exemplo: 14:00`,
+            "ana"
+        );
+
+        return;
+    }
+
+
+    /* -------------------------
+       ETAPA: HORA
+    ------------------------- */
+
+    if (estadoAgendamento.etapa === "hora") {
+
+        let horaValida =
+            normalizarHora(texto);
+
+        if (!horaValida) {
+
+            adicionarMensagem(
+                "Não consegui identificar o horário. 🕐\n\nDigite no formato HH:MM, por exemplo: 14:00.",
+                "ana"
+            );
+
+            return;
+        }
+
+
+        /* VERIFICA HORÁRIO ANTES DE CONFIRMAR */
+
+        if (
+            horarioOcupado(
+                estadoAgendamento.data,
+                horaValida
+            )
+        ) {
+
+            let existente =
+                encontrarAgendamento(
+                    estadoAgendamento.data,
+                    horaValida
+                );
+
+            adicionarMensagem(
+                `⚠️ Esse horário já está ocupado.\n\n` +
+                `📅 Data: ${formatarData(estadoAgendamento.data)}\n` +
+                `🕐 Horário: ${horaValida}\n\n` +
+                `Por favor, escolha outro horário.`,
+                "ana"
+            );
+
+            /* Continua na etapa de horário */
+            estadoAgendamento.etapa =
+                "hora";
+
+            return;
+        }
+
+
+        estadoAgendamento.hora =
+            horaValida;
+
+        estadoAgendamento.etapa =
+            "confirmacao";
+
+
+        adicionarMensagem(
+            `Confira seu agendamento:\n\n` +
+            `👤 Paciente: ${estadoAgendamento.paciente}\n` +
+            `💼 Serviço: ${estadoAgendamento.servico}\n` +
+            `📅 Data: ${formatarData(estadoAgendamento.data)}\n` +
+            `🕐 Horário: ${estadoAgendamento.hora}\n\n` +
+            `Deseja confirmar o agendamento?\n\n` +
+            `Digite SIM para confirmar ou NÃO para cancelar.`,
+            "ana"
+        );
+
+        return;
+    }
+
+
+    /* -------------------------
+       ETAPA: CONFIRMAÇÃO
+    ------------------------- */
+
+    if (estadoAgendamento.etapa === "confirmacao") {
+
+        if (
+            normalizado === "sim" ||
+            normalizado === "s" ||
+            normalizado === "confirmo" ||
+            normalizado === "confirmar"
+        ) {
+
+            /* SEGUNDA VERIFICAÇÃO
+               antes de salvar */
+
+            if (
+                horarioOcupado(
+                    estadoAgendamento.data,
+                    estadoAgendamento.hora
+                )
+            ) {
+
+                adicionarMensagem(
+                    "⚠️ Enquanto aguardávamos sua confirmação, esse horário foi ocupado por outro agendamento.\n\nPor favor, escolha outro horário.",
+                    "ana"
+                );
+
+                estadoAgendamento.etapa =
+                    "hora";
+
+                return;
+            }
+
+
+            agendamentos.push({
+
+                paciente:
+                    estadoAgendamento.paciente,
+
+                servico:
+                    estadoAgendamento.servico,
+
+                data:
+                    estadoAgendamento.data,
+
+                hora:
+                    estadoAgendamento.hora
+            });
+
+
+            localStorage.setItem(
+                "agendamentosAtendeIA",
+                JSON.stringify(agendamentos)
             );
 
 
-          if(
-            p === nome ||
-            p.includes(nome) ||
-            nome.includes(p)
-          ){
+            adicionarMensagem(
+                `✅ Agendamento confirmado com sucesso!\n\n` +
+                `👤 ${estadoAgendamento.paciente}\n` +
+                `💼 ${estadoAgendamento.servico}\n` +
+                `📅 ${formatarData(estadoAgendamento.data)}\n` +
+                `🕐 ${estadoAgendamento.hora}\n\n` +
+                `Esperamos você! 😊`,
+                "ana"
+            );
 
-            encontrado=s;
 
-          }
+            estadoAgendamento = {
 
+                ativo: false,
+
+                etapa: "",
+
+                paciente: "",
+
+                servico: "",
+
+                data: "",
+
+                hora: ""
+            };
+
+
+            mostrarAgendamentos();
+            mostrarResumo();
+
+            return;
         }
-      );
 
 
-      if(encontrado){
+        if (
+            normalizado === "nao" ||
+            normalizado === "não" ||
+            normalizado === "n" ||
+            normalizado === "cancelar"
+        ) {
 
-        estadoAgendamento.servico =
-          encontrado.nome;
+            adicionarMensagem(
+                "Tudo bem! 😊 O agendamento foi cancelado. Se precisar, posso ajudar a fazer um novo agendamento.",
+                "ana"
+            );
 
 
-        estadoAgendamento.etapa =
-          "data";
+            estadoAgendamento = {
+
+                ativo: false,
+
+                etapa: "",
+
+                paciente: "",
+
+                servico: "",
+
+                data: "",
+
+                hora: ""
+            };
+
+            return;
+        }
 
 
-        resposta =
-          "Perfeito! 👍<br><br>" +
+        adicionarMensagem(
+            "Por favor, responda SIM para confirmar ou NÃO para cancelar.",
+            "ana"
+        );
 
-          "🩺 Serviço: <b>" +
-          encontrado.nome +
-          "</b><br><br>" +
+        return;
+    }
+}
 
-          "Agora informe a <b>data</b> desejada.<br>" +
 
-          "Exemplo: 20/09/2026";
+/* =====================================================
+   CONVERTER DATA
+===================================================== */
 
-      }else{
+function converterDataParaISO(texto) {
 
-        resposta =
-          "Não consegui identificar o serviço. 😊<br><br>" +
+    texto = texto.trim();
 
-          "Digite o nome de um dos serviços disponíveis.";
+    /* DD/MM/AAAA */
 
-      }
+    let match =
+        texto.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})$/);
 
+    if (match) {
+
+        let dia =
+            parseInt(match[1]);
+
+        let mes =
+            parseInt(match[2]);
+
+        let ano =
+            parseInt(match[3]);
+
+        let data =
+            new Date(ano, mes - 1, dia);
+
+        if (
+            data.getFullYear() === ano &&
+            data.getMonth() === mes - 1 &&
+            data.getDate() === dia
+        ) {
+
+            return (
+                ano +
+                "-" +
+                String(mes).padStart(2, "0") +
+                "-" +
+                String(dia).padStart(2, "0")
+            );
+        }
     }
 
 
-    /* DATA */
+    /* AAAA-MM-DD */
 
-    else if(
-      estadoAgendamento.etapa ===
-      "data"
-    ){
+    match =
+        texto.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
 
-      estadoAgendamento.data =
-        pergunta;
+    if (match) {
+
+        let ano =
+            parseInt(match[1]);
+
+        let mes =
+            parseInt(match[2]);
+
+        let dia =
+            parseInt(match[3]);
+
+        let data =
+            new Date(ano, mes - 1, dia);
+
+        if (
+            data.getFullYear() === ano &&
+            data.getMonth() === mes - 1 &&
+            data.getDate() === dia
+        ) {
+
+            return (
+                ano +
+                "-" +
+                String(mes).padStart(2, "0") +
+                "-" +
+                String(dia).padStart(2, "0")
+            );
+        }
+    }
+
+    return null;
+}
 
 
-      estadoAgendamento.etapa =
-        "hora";
+/* =====================================================
+   VERIFICAR SE DATA PASSOU
+===================================================== */
+
+function dataPassou(dataISO) {
+
+    let hoje =
+        new Date();
+
+    hoje.setHours(0, 0, 0, 0);
+
+    let partes =
+        dataISO.split("-");
+
+    let data =
+        new Date(
+            parseInt(partes[0]),
+            parseInt(partes[1]) - 1,
+            parseInt(partes[2])
+        );
+
+    data.setHours(0, 0, 0, 0);
+
+    return data < hoje;
+}
 
 
-      resposta =
-        "Ótimo! 📅<br><br>" +
+/* =====================================================
+   NORMALIZAR HORA
+===================================================== */
 
-        "Data escolhida: <b>" +
-        pergunta +
-        "</b><br><br>" +
+function normalizarHora(texto) {
 
-        "Agora informe o <b>horário</b> desejado.<br>" +
+    texto =
+        texto.trim()
+            .replace(".", ":")
+            .replace("h", ":")
+            .replace("H", ":");
 
-        "Exemplo: 14:00";
+    let match =
+        texto.match(/^(\d{1,2}):?(\d{2})$/);
 
+    if (!match) {
+        return null;
+    }
+
+    let hora =
+        parseInt(match[1]);
+
+    let minuto =
+        parseInt(match[2]);
+
+    if (
+        hora < 0 ||
+        hora > 23 ||
+        minuto < 0 ||
+        minuto > 59
+    ) {
+        return null;
+    }
+
+    return (
+        String(hora).padStart(2, "0") +
+        ":" +
+        String(minuto).padStart(2, "0")
+    );
+}
+
+
+/* =====================================================
+   RESPONDER ANA
+===================================================== */
+
+function responder(texto) {
+
+    let normalizado =
+        normalizarTexto(texto);
+
+
+    /* Se estiver fazendo agendamento */
+
+    if (estadoAgendamento.ativo) {
+
+        processarAgendamento(texto);
+
+        return;
     }
 
 
-    /* HORA */
+    /* Iniciar agendamento */
 
-    else if(
-      estadoAgendamento.etapa ===
-      "hora"
-    ){
+    if (
+        normalizado.includes("quero agendar") ||
+        normalizado.includes("quero marcar") ||
+        normalizado === "agendar" ||
+        normalizado.includes("agendamento") ||
+        normalizado.includes("marcar consulta") ||
+        normalizado.includes("marcar horario") ||
+        normalizado.includes("marcar horário")
+    ) {
 
-      estadoAgendamento.hora =
-        pergunta;
+        iniciarAgendamento();
 
-
-      estadoAgendamento.etapa =
-        "confirmacao";
-
-
-      resposta =
-        "Confira seu agendamento: 📋<br><br>" +
-
-        "👤 <b>Nome:</b> " +
-        estadoAgendamento.paciente +
-
-        "<br>" +
-
-        "🩺 <b>Serviço:</b> " +
-        estadoAgendamento.servico +
-
-        "<br>" +
-
-        "📅 <b>Data:</b> " +
-        estadoAgendamento.data +
-
-        "<br>" +
-
-        "⏰ <b>Horário:</b> " +
-        estadoAgendamento.hora +
-
-        "<br><br>" +
-
-        "Está tudo correto?<br>" +
-
-        "Digite <b>SIM</b> para confirmar ou <b>NÃO</b> para cancelar.";
-
+        return;
     }
 
 
-    /* CONFIRMAÇÃO */
+    let config =
+        JSON.parse(
+            localStorage.getItem("configIAAtendeIA") || "{}"
+        );
 
-    else if(
-      estadoAgendamento.etapa ===
-      "confirmacao"
-    ){
-
-      if(
-        p === "sim" ||
-        p === "s" ||
-        p.includes("confirmo")
-      ){
-
-        agendamentos.push({
-
-          paciente:
-            estadoAgendamento.paciente,
-
-          data:
-            estadoAgendamento.data,
-
-          hora:
-            estadoAgendamento.hora,
-
-          servico:
-            estadoAgendamento.servico
-
-        });
-
-
-        localStorage.setItem(
-
-          "agendamentosAtendeIA",
-
-          JSON.stringify(
-            agendamentos
-          )
-
+    let clinica =
+        JSON.parse(
+            localStorage.getItem("clinicaAtendeIA") || "{}"
         );
 
 
-        resposta =
-          "✅ <b>Agendamento confirmado!</b><br><br>" +
+    /* SAUDAÇÕES */
 
-          "👤 " +
-          estadoAgendamento.paciente +
+    if (
+        normalizado === "oi" ||
+        normalizado === "ola" ||
+        normalizado === "bom dia" ||
+        normalizado === "boa tarde" ||
+        normalizado === "boa noite" ||
+        normalizado.includes("oi ana")
+    ) {
 
-          "<br>" +
+        adicionarMensagem(
+            config.mensagem ||
+            "Olá! 😊 Sou a Ana, assistente virtual. Como posso ajudar você?",
+            "ana"
+        );
 
-          "🩺 " +
-          estadoAgendamento.servico +
-
-          "<br>" +
-
-          "📅 " +
-          estadoAgendamento.data +
-
-          "<br>" +
-
-          "⏰ " +
-          estadoAgendamento.hora +
-
-          "<br><br>" +
-
-          "Seu agendamento foi registrado com sucesso. 😊";
-
-
-        estadoAgendamento = {
-
-          ativo:false,
-
-          etapa:"",
-
-          paciente:"",
-
-          servico:"",
-
-          data:"",
-
-          hora:""
-
-        };
-
-
-        mostrarAgendamentos();
-
-      }
-
-
-      else if(
-        p === "nao" ||
-        p.includes("cancelar")
-      ){
-
-        resposta =
-          "Tudo bem! 😊 O agendamento foi cancelado.";
-
-
-        estadoAgendamento = {
-
-          ativo:false,
-
-          etapa:"",
-
-          paciente:"",
-
-          servico:"",
-
-          data:"",
-
-          hora:""
-
-        };
-
-      }
-
-
-      else{
-
-        resposta =
-          "Por favor, responda <b>SIM</b> para confirmar ou <b>NÃO</b> para cancelar.";
-
-      }
-
+        return;
     }
 
-  }
 
+    /* SERVIÇOS */
 
-  /* =================================
-     INICIAR AGENDAMENTO
-  ================================= */
+    if (
+        normalizado.includes("servico") ||
+        normalizado.includes("servicos") ||
+        normalizado.includes("fazem") ||
+        normalizado.includes("tratamento")
+    ) {
 
+        adicionarMensagem(
+            textoServicos(),
+            "ana"
+        );
 
-  else if(
-
-    p.includes("quero agendar") ||
-
-    p.includes("quero marcar") ||
-
-    p.includes("agendar") ||
-
-    p.includes("agendamento") ||
-
-    p.includes("marcar")
-
-  ){
-
-    resposta =
-      iniciarAgendamento();
-
-  }
-
-
-  /* =================================
-     SAUDAÇÕES
-  ================================= */
-
-
-  else if(
-
-    p === "oi" ||
-
-    p === "ola" ||
-
-    p.includes("bom dia") ||
-
-    p.includes("boa tarde") ||
-
-    p.includes("boa noite")
-
-  ){
-
-    resposta =
-      ia.mensagem ||
-
-      "Olá! 😊 Sou a Ana, assistente virtual. Como posso ajudar você?";
-
-  }
-
-
-  /* =================================
-     SERVIÇOS
-  ================================= */
-
-
-  else if(
-
-    p.includes("servico") ||
-
-    p.includes("servicos") ||
-
-    p.includes("procedimento") ||
-
-    p.includes("o que voces fazem") ||
-
-    p.includes("o que tem")
-
-  ){
-
-    if(
-      servicos.length === 0
-    ){
-
-      resposta =
-        "No momento ainda não temos serviços cadastrados.";
-
-    }else{
-
-      resposta =
-        "Claro! 😊 Temos os seguintes serviços:<br><br>";
-
-
-      servicos.forEach(
-        s=>{
-
-          resposta +=
-
-            "🩺 <b>" +
-            s.nome +
-            "</b>" +
-
-            (
-              s.preco
-              ? " — " + s.preco
-              : ""
-            ) +
-
-            "<br>";
-
-        }
-      );
-
-
-      resposta +=
-        "<br>Se quiser agendar, diga <b>Quero agendar</b>.";
-
+        return;
     }
 
-  }
 
+    /* PREÇOS */
 
-  /* =================================
-     VALORES
-  ================================= */
+    if (
+        normalizado.includes("preco") ||
+        normalizado.includes("precos") ||
+        normalizado.includes("valor") ||
+        normalizado.includes("valores") ||
+        normalizado.includes("quanto custa")
+    ) {
 
+        adicionarMensagem(
+            textoServicos(),
+            "ana"
+        );
 
-  else if(
-
-    p.includes("preco") ||
-
-    p.includes("valor") ||
-
-    p.includes("quanto custa") ||
-
-    p.includes("tratamento")
-
-  ){
-
-    if(
-      servicos.length === 0
-    ){
-
-      resposta =
-        "Ainda não existem serviços cadastrados.";
-
-    }else{
-
-      resposta =
-        "Claro! 😊 Confira nossos valores:<br><br>";
-
-
-      servicos.forEach(
-        s=>{
-
-          resposta +=
-
-            "🩺 <b>" +
-            s.nome +
-            "</b> — " +
-
-            (
-              s.preco ||
-              "valor não informado"
-            ) +
-
-            "<br>";
-
-        }
-      );
-
-
-      resposta +=
-        "<br>Se quiser, posso ajudar com o agendamento.";
-
+        return;
     }
 
-  }
 
+    /* HORÁRIO */
 
-  /* =================================
-     HORÁRIO
-  ================================= */
+    if (
+        normalizado.includes("horario") ||
+        normalizado.includes("abre") ||
+        normalizado.includes("fecha") ||
+        normalizado.includes("atendimento")
+    ) {
 
+        adicionarMensagem(
+            clinica.horario ||
+            "Entre em contato conosco para consultar nosso horário de atendimento.",
+            "ana"
+        );
 
-  else if(
+        return;
+    }
 
-    p.includes("horario") ||
 
-    p.includes("abre") ||
+    /* ENDEREÇO */
 
-    p.includes("funciona") ||
+    if (
+        normalizado.includes("endereco") ||
+        normalizado.includes("onde fica") ||
+        normalizado.includes("localizacao") ||
+        normalizado.includes("local")
+    ) {
 
-    p.includes("atendimento")
+        adicionarMensagem(
+            clinica.endereco ||
+            "Entre em contato conosco para receber nosso endereço.",
+            "ana"
+        );
 
-  ){
+        return;
+    }
 
-    resposta =
 
-      clinica.horario ||
+    /* TELEFONE */
 
-      "O horário de atendimento ainda não foi cadastrado.";
+    if (
+        normalizado.includes("telefone") ||
+        normalizado.includes("whatsapp") ||
+        normalizado.includes("contato")
+    ) {
 
-  }
+        adicionarMensagem(
+            clinica.telefone ||
+            "Entre em contato conosco pelo WhatsApp da clínica.",
+            "ana"
+        );
 
+        return;
+    }
 
-  /* =================================
-     ENDEREÇO
-  ================================= */
 
+    /* AGRADECIMENTO */
 
-  else if(
+    if (
+        normalizado.includes("obrigado") ||
+        normalizado.includes("obrigada") ||
+        normalizado.includes("valeu")
+    ) {
 
-    p.includes("endereco") ||
+        adicionarMensagem(
+            "Por nada! 😊 Estou à disposição para ajudar.",
+            "ana"
+        );
 
-    p.includes("onde fica") ||
+        return;
+    }
 
-    p.includes("localizacao") ||
 
-    p.includes("local")
+    /* DESPEDIDA */
 
-  ){
+    if (
+        normalizado === "tchau" ||
+        normalizado.includes("ate mais") ||
+        normalizado.includes("até mais")
+    ) {
 
-    resposta =
+        adicionarMensagem(
+            "Até mais! 😊 Será um prazer atender você novamente.",
+            "ana"
+        );
 
-      clinica.endereco ||
+        return;
+    }
 
-      "O endereço da clínica ainda não foi cadastrado.";
 
-  }
+    /* RESPOSTA PADRÃO */
 
-
-  /* =================================
-     AGRADECIMENTO
-  ================================= */
-
-
-  else if(
-
-    p.includes("obrigado") ||
-
-    p.includes("obrigada") ||
-
-    p.includes("valeu")
-
-  ){
-
-    resposta =
-      "Por nada! 😊 Estou à disposição para ajudar.";
-
-  }
-
-
-  /* =================================
-     DESPEDIDA
-  ================================= */
-
-
-  else if(
-
-    p.includes("tchau") ||
-
-    p.includes("ate mais")
-
-  ){
-
-    resposta =
-      "Até mais! 😊 Quando precisar, estarei aqui.";
-
-  }
-
-
-  /* =================================
-     RESPOSTA PADRÃO
-  ================================= */
-
-
-  else{
-
-    resposta =
-
-      "Entendi! 😊 Posso ajudar você com:<br><br>" +
-
-      "🩺 Serviços e valores<br>" +
-
-      "📅 Agendamentos<br>" +
-
-      "⏰ Horários de atendimento<br>" +
-
-      "📍 Endereço da clínica<br><br>" +
-
-      "O que você gostaria de saber?";
-
-  }
-
-
-  /* =================================
-     MOSTRAR RESPOSTA
-  ================================= */
-
-
-  chat.innerHTML += `
-
-    <div class="mensagem atendente">
-
-      <b>🤖 ${ia.nome || "Ana"}:</b>
-
-      ${resposta}
-
-    </div>
-
-  `;
-
-
-  campo.value="";
-
-
-  chat.scrollTop =
-    chat.scrollHeight;
-
+    adicionarMensagem(
+        "Posso ajudar você com:\n\n" +
+        "💰 Serviços e valores\n" +
+        "📅 Agendamentos\n" +
+        "🕐 Horário de atendimento\n" +
+        "📍 Endereço da clínica\n" +
+        "📱 WhatsApp/telefone\n\n" +
+        "O que você gostaria de saber?",
+        "ana"
+    );
 }
 
 
-/* =====================================
+/* =====================================================
+   ENVIAR MENSAGEM
+===================================================== */
+
+function enviarMensagem() {
+
+    let input =
+        document.getElementById("mensagemUsuario");
+
+    let texto =
+        input.value.trim();
+
+    if (!texto) {
+        return;
+    }
+
+    adicionarMensagem(
+        texto,
+        "usuario"
+    );
+
+    input.value = "";
+
+    setTimeout(() => {
+
+        responder(texto);
+
+    }, 300);
+}
+
+
+/* =====================================================
    RESUMO
-===================================== */
+===================================================== */
+
+function mostrarResumo() {
+
+    document.getElementById("totalServicos").textContent =
+        servicos.length;
+
+    document.getElementById("totalAgendamentos").textContent =
+        agendamentos.length;
 
 
-function mostrarResumo(){
+    let hoje =
+        new Date();
 
-  const clinica =
-    JSON.parse(
+    let ano =
+        hoje.getFullYear();
 
-      localStorage.getItem(
-        "clinicaAtendeIA"
-      ) || "{}"
+    let mes =
+        String(hoje.getMonth() + 1).padStart(2, "0");
 
-    );
+    let dia =
+        String(hoje.getDate()).padStart(2, "0");
 
-
-  const resumo =
-    document.getElementById(
-      "resumo"
-    );
+    let dataHoje =
+        `${ano}-${mes}-${dia}`;
 
 
-  resumo.innerHTML = `
+    let totalHoje =
+        agendamentos.filter(a => {
 
-    <div class="item">
+            return a.data === dataHoje;
 
-      <b>🏥 Clínica:</b>
-
-      ${
-        clinica.nome ||
-        "Não cadastrada"
-      }
-
-    </div>
+        }).length;
 
 
-    <div class="item">
-
-      <b>🩺 Serviços:</b>
-
-      ${servicos.length}
-
-    </div>
-
-
-    <div class="item">
-
-      <b>📅 Agendamentos:</b>
-
-      ${agendamentos.length}
-
-    </div>
-
-
-    <div class="item">
-
-      <b>🤖 Atendente:</b>
-
-      ${
-        localStorage.getItem(
-          "configIAAtendeIA"
-        )
-
-        ? "Configurado"
-
-        : "Não configurado"
-      }
-
-    </div>
-
-  `;
-
+    document.getElementById("totalHoje").textContent =
+        totalHoje;
 }
 
 
-/* =====================================
+/* =====================================================
    CARREGAR DADOS
-===================================== */
+===================================================== */
+
+function carregarDados() {
+
+    let clinica =
+        JSON.parse(
+            localStorage.getItem("clinicaAtendeIA") || "{}"
+        );
+
+    let ia =
+        JSON.parse(
+            localStorage.getItem("configIAAtendeIA") || "{}"
+        );
 
 
-function carregarDados(){
+    document.getElementById("nomeClinica").value =
+        clinica.nome || "";
 
-  const clinica =
-    JSON.parse(
+    document.getElementById("telefoneClinica").value =
+        clinica.telefone || "";
 
-      localStorage.getItem(
-        "clinicaAtendeIA"
-      ) || "{}"
+    document.getElementById("enderecoClinica").value =
+        clinica.endereco || "";
 
-    );
-
-
-  document.getElementById(
-    "clinica"
-  ).value =
-    clinica.nome || "";
+    document.getElementById("horarioClinica").value =
+        clinica.horario || "";
 
 
-  document.getElementById(
-    "telefone"
-  ).value =
-    clinica.telefone || "";
+    document.getElementById("nomeIA").value =
+        ia.nome || "Ana";
+
+    document.getElementById("mensagemIA").value =
+        ia.mensagem ||
+        "Olá! Seja bem-vinda à nossa clínica! 😊 Sou a Ana, assistente virtual. Posso ajudar você com informações sobre nossos serviços, valores e agendamentos. Como posso ajudar você hoje?";
+
+    document.getElementById("instrucoesIA").value =
+        ia.instrucoes || "";
 
 
-  document.getElementById(
-    "endereco"
-  ).value =
-    clinica.endereco || "";
+    mostrarServicos();
 
+    atualizarSelectServicos();
 
-  document.getElementById(
-    "horario"
-  ).value =
-    clinica.horario || "";
+    mostrarAgendamentos();
 
+    mostrarResumo();
 
-  const ia =
-    JSON.parse(
-
-      localStorage.getItem(
-        "configIAAtendeIA"
-      ) || "{}"
-
-    );
-
-
-  document.getElementById(
-    "nomeIA"
-  ).value =
-    ia.nome || "";
-
-
-  document.getElementById(
-    "mensagemIA"
-  ).value =
-    ia.mensagem || "";
-
-
-  document.getElementById(
-    "instrucoes"
-  ).value =
-    ia.instrucoes || "";
-
-
-  mostrarServicos();
-
-  mostrarAgendamentos();
-
+    iniciarChat();
 }
 
 
-/* =====================================
-   LIMPAR DADOS
-===================================== */
+/* =====================================================
+   INICIAR SISTEMA
+===================================================== */
 
+window.onload = function() {
 
-function limparDados(){
+    carregarDados();
 
-  if(
-
-    confirm(
-      "Deseja realmente apagar todos os dados deste navegador?"
-    )
-
-  ){
-
-    localStorage.clear();
-
-    location.reload();
-
-  }
-
-}
-
-
-/* =====================================
-   INICIAR
-===================================== */
-
-
-carregarDados();
+};
 
 </script>
 
