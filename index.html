@@ -3,223 +3,259 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AtendeIA - Gestão de Clínicas</title>
+<title>AtendeIA - Ana Assistente Virtual</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,Helvetica,sans-serif;
+}
 
 body{
-    margin:0;
-    font-family:Arial,Helvetica,sans-serif;
-    background:#f3f6f9;
-    color:#1f2937
+    background:#eef1f5;
+    color:#222;
 }
 
 header{
-    background:linear-gradient(135deg,#0d6efd,#084298);
+    background:#075e54;
     color:white;
-    padding:22px 15px;
+    padding:18px;
     text-align:center;
-    box-shadow:0 3px 10px rgba(0,0,0,.15)
 }
 
-header h1{margin:0;font-size:28px}
-header p{margin:7px 0 0;font-size:14px}
+header h1{
+    font-size:26px;
+}
+
+header p{
+    margin-top:5px;
+    opacity:.9;
+}
 
 .container{
-    max-width:900px;
+    max-width:1000px;
     margin:auto;
-    padding:15px
+    padding:15px;
 }
 
 .card{
     background:white;
     border-radius:14px;
     padding:18px;
-    margin-bottom:16px;
-    box-shadow:0 3px 12px rgba(0,0,0,.08)
+    margin-bottom:18px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
 }
 
 .card h2{
-    margin-top:0;
-    color:#0d6efd;
-    font-size:20px
+    color:#075e54;
+    margin-bottom:15px;
 }
 
-label{
-    display:block;
-    font-weight:bold;
-    margin-top:12px;
-    margin-bottom:5px
-}
-
-input,textarea,select{
+input,select,button,textarea{
     width:100%;
     padding:12px;
-    border:1px solid #ccd3da;
+    margin-top:8px;
+    margin-bottom:10px;
     border-radius:8px;
+    border:1px solid #ccc;
     font-size:15px;
-    background:white
-}
-
-textarea{
-    min-height:100px;
-    resize:vertical
 }
 
 button{
-    border:none;
-    border-radius:8px;
-    padding:12px 16px;
-    font-size:15px;
-    font-weight:bold;
-    cursor:pointer
-}
-
-.btn-primary{
-    background:#0d6efd;
+    background:#075e54;
     color:white;
-    width:100%;
-    margin-top:15px
+    border:none;
+    cursor:pointer;
+    font-weight:bold;
 }
 
-.btn-success{background:#198754;color:white}
-.btn-danger{background:#dc3545;color:white}
-.btn-secondary{background:#6c757d;color:white}
+button:hover{
+    opacity:.9;
+}
 
-.servico-item,.agendamento-item{
+.btn-secundario{
+    background:#128c7e;
+}
+
+.btn-excluir{
+    background:#c62828;
+}
+
+.item{
     border:1px solid #ddd;
     border-radius:10px;
     padding:12px;
     margin-top:10px;
-    background:#fafafa
-}
-
-.servico-item strong,.agendamento-item strong{
-    color:#0d6efd
 }
 
 .chat{
     background:#e5ddd5;
-    border-radius:14px;
-    padding:12px;
-    min-height:420px;
-    max-height:650px;
-    overflow-y:auto
+    border-radius:16px;
+    overflow:hidden;
+    border:1px solid #ccc;
+}
+
+.chat-header{
+    background:#075e54;
+    color:white;
+    padding:12px 15px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.avatar{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    background:#fff;
+    color:#075e54;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:23px;
+    font-weight:bold;
+}
+
+.chat-info strong{
+    display:block;
+    font-size:17px;
+}
+
+.chat-info span{
+    font-size:12px;
+    color:#d8f5ef;
+}
+
+.chat-body{
+    min-height:430px;
+    max-height:600px;
+    overflow-y:auto;
+    padding:15px;
+    background:#efe7de;
 }
 
 .mensagem{
-    margin:8px 0;
-    display:flex
-}
-
-.mensagem.ana{justify-content:flex-start}
-.mensagem.usuario{justify-content:flex-end}
-
-.balao{
-    max-width:88%;
-    padding:11px 14px;
-    border-radius:14px;
-    line-height:1.45;
+    max-width:82%;
+    padding:10px 13px;
+    margin-bottom:10px;
+    border-radius:12px;
+    line-height:1.4;
     font-size:15px;
-    white-space:pre-line
+    white-space:pre-line;
 }
 
-.mensagem.ana .balao{
+.mensagem.ana{
     background:white;
-    border-bottom-left-radius:4px
+    margin-right:auto;
+    border-top-left-radius:3px;
 }
 
-.mensagem.usuario .balao{
+.mensagem.usuario{
     background:#d9fdd3;
-    border-bottom-right-radius:4px
+    margin-left:auto;
+    border-top-right-radius:3px;
 }
 
-.chat-input-area{
+.chat-input{
+    background:#f0f0f0;
+    padding:10px;
     display:flex;
     gap:8px;
-    margin-top:10px
 }
 
-.chat-input-area input{flex:1}
-.chat-input-area button{
-    background:#0d6efd;
-    color:white;
-    min-width:80px
+.chat-input input{
+    margin:0;
+    flex:1;
+    border-radius:22px;
+}
+
+.chat-input button{
+    width:55px;
+    margin:0;
+    border-radius:50%;
+    padding:10px;
 }
 
 .horarios-chat{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:8px;
-    margin:12px 0
+    gap:7px;
+    margin:10px 0;
 }
 
 .horario-btn{
-    background:white;
-    color:#0d6efd;
-    border:2px solid #0d6efd;
-    padding:11px 5px;
-    border-radius:10px;
-    font-weight:bold
-}
-
-.horario-btn:hover{
-    background:#0d6efd;
-    color:white
-}
-
-.acao-data{margin-top:10px}
-
-.btn-outra-data{
-    background:#6c757d;
+    background:#128c7e;
     color:white;
-    width:100%
+    border:none;
+    padding:10px 5px;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.horario-btn.ocupado{
+    background:#999;
+    cursor:not-allowed;
+}
+
+.datas-chat{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:7px;
+    margin:10px 0;
+}
+
+.data-btn{
+    background:#075e54;
+    color:white;
+    border:none;
+    padding:10px 5px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.confirmacao-box{
+    background:#d9fdd3;
+    border-left:5px solid #075e54;
+    padding:12px;
+    border-radius:8px;
+    margin-top:8px;
 }
 
 .resumo-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:10px
+    gap:12px;
 }
 
 .resumo-box{
-    background:#f1f5f9;
-    border-radius:10px;
-    padding:15px;
-    text-align:center
+    background:#075e54;
+    color:white;
+    padding:20px;
+    border-radius:12px;
+    text-align:center;
 }
 
 .resumo-box strong{
     display:block;
-    font-size:25px;
-    color:#0d6efd
-}
-
-.pequeno{
-    font-size:13px;
-    color:#666
-}
-
-.botoes-confirmacao{
-    display:flex;
-    gap:8px;
-    margin-top:10px
-}
-
-.botoes-confirmacao button{flex:1}
-
-.info-atendimento{
-    background:#e7f1ff;
-    border-radius:10px;
-    padding:12px;
-    margin-top:10px
+    font-size:28px;
 }
 
 @media(max-width:600px){
-    .container{padding:10px}
-    .resumo-grid{grid-template-columns:1fr}
-    .horarios-chat{grid-template-columns:repeat(3,1fr)}
+    .container{
+        padding:8px;
+    }
+
+    .resumo-grid{
+        grid-template-columns:1fr;
+    }
+
+    .mensagem{
+        max-width:90%;
+    }
 }
 </style>
 </head>
@@ -237,21 +273,12 @@ button{
 <div class="card">
     <h2>🏥 Dados da Clínica</h2>
 
-    <label>Nome da clínica</label>
-    <input id="nomeClinica" placeholder="Digite o nome da clínica">
+    <input id="nomeClinica" placeholder="Nome da clínica">
+    <input id="telefoneClinica" placeholder="WhatsApp / Telefone">
+    <input id="enderecoClinica" placeholder="Endereço">
+    <input id="horarioClinica" placeholder="Horário de atendimento">
 
-    <label>Telefone / WhatsApp</label>
-    <input id="telefoneClinica" placeholder="Digite o WhatsApp">
-
-    <label>Endereço</label>
-    <input id="enderecoClinica" placeholder="Digite o endereço">
-
-    <label>Horário de funcionamento</label>
-    <input id="horarioClinica" value="08:00 às 18:00">
-
-    <button class="btn-primary" onclick="salvarClinica()">
-        💾 Salvar dados da clínica
-    </button>
+    <button onclick="salvarClinica()">Salvar dados da clínica</button>
 </div>
 
 
@@ -259,34 +286,30 @@ button{
 <div class="card">
     <h2>🤖 Configuração do Atendente IA</h2>
 
-    <label>Nome da atendente</label>
-    <input id="nomeIA" value="Ana">
+    <input id="nomeIA" placeholder="Nome da atendente">
 
-    <label>Mensagem inicial</label>
-    <textarea id="mensagemInicial">Olá! Seja bem-vinda à nossa clínica! 😊 Sou a Ana, assistente virtual. Posso ajudar você com informações sobre nossos serviços, valores e agendamentos. Como posso ajudar você hoje?</textarea>
+    <textarea id="mensagemInicial" rows="4"
+    placeholder="Mensagem inicial"></textarea>
 
-    <label>Instruções para a Ana</label>
-    <textarea id="instrucoesIA">Seja cordial, profissional e natural. Informe serviços, valores, horários, endereço e WhatsApp cadastrados. Ajude clientes com agendamentos. Não invente informações. Não repita a mesma resposta sem necessidade.</textarea>
+    <textarea id="instrucoesIA" rows="5"
+    placeholder="Instruções da atendente"></textarea>
 
-    <button class="btn-primary" onclick="salvarConfigIA()">
-        💾 Salvar configuração da Ana
-    </button>
+    <button onclick="salvarConfigIA()">Salvar configuração da Ana</button>
 </div>
 
 
 <!-- SERVIÇOS -->
 <div class="card">
-    <h2>💰 Serviços da Clínica</h2>
+    <h2>💼 Serviços da Clínica</h2>
 
-    <label>Nome do serviço</label>
-    <input id="nomeServico" placeholder="Ex.: Tratamento">
+    <input id="nomeServico" placeholder="Nome do serviço">
 
-    <label>Valor</label>
-    <input id="valorServico" placeholder="Ex.: 120,00">
+    <input id="precoServico"
+    type="number"
+    step="0.01"
+    placeholder="Valor">
 
-    <button class="btn-primary" onclick="adicionarServico()">
-        ➕ Adicionar serviço
-    </button>
+    <button onclick="adicionarServico()">Adicionar serviço</button>
 
     <div id="listaServicos"></div>
 </div>
@@ -296,50 +319,64 @@ button{
 <div class="card">
     <h2>📅 Agendamento Manual</h2>
 
-    <label>Nome do paciente</label>
     <input id="pacienteManual" placeholder="Nome do paciente">
 
-    <label>Data</label>
-    <input type="date" id="dataManual" onchange="atualizarHorariosManuais()">
+    <input id="dataManual" type="date"
+    onchange="atualizarHorariosManual()">
 
-    <label>Horário</label>
     <select id="horaManual">
-        <option value="">Selecione uma data primeiro</option>
+        <option value="">Selecione a data primeiro</option>
     </select>
 
-    <label>Serviço</label>
     <select id="servicoManual"></select>
 
-    <button class="btn-primary" onclick="adicionarAgendamentoManual()">
-        📅 Salvar agendamento
+    <button onclick="salvarAgendamentoManual()">
+        Salvar agendamento
     </button>
-
-    <div id="listaAgendamentos"></div>
 </div>
 
 
 <!-- CHAT -->
 <div class="card">
+
     <h2>💬 Chat da Ana</h2>
 
-    <div id="chat" class="chat"></div>
+    <div class="chat">
 
-    <div class="chat-input-area">
-        <input
-            id="entradaChat"
-            placeholder="Digite sua mensagem..."
-            onkeydown="if(event.key==='Enter') enviarMensagem()"
-        >
+        <div class="chat-header">
 
-        <button onclick="enviarMensagem()">
-            Enviar
-        </button>
+            <div class="avatar">
+                A
+            </div>
+
+            <div class="chat-info">
+                <strong id="nomeAnaChat">Ana</strong>
+                <span>● Online</span>
+            </div>
+
+        </div>
+
+        <div id="chatBody" class="chat-body"></div>
+
+        <div class="chat-input">
+
+            <input
+                id="entradaChat"
+                placeholder="Digite sua mensagem..."
+                onkeydown="if(event.key==='Enter') enviarMensagem()">
+
+            <button onclick="enviarMensagem()">➤</button>
+
+        </div>
+
     </div>
+
 </div>
 
 
 <!-- RESUMO -->
 <div class="card">
+
     <h2>📊 Resumo</h2>
 
     <div class="resumo-grid">
@@ -360,6 +397,7 @@ button{
         </div>
 
     </div>
+
 </div>
 
 </div>
@@ -367,30 +405,18 @@ button{
 
 <script>
 
-/* =====================================================
-   DADOS
-===================================================== */
+let servicos =
+JSON.parse(localStorage.getItem("servicosAtendeIA") || "[]");
 
-let servicos = JSON.parse(
-    localStorage.getItem("servicosAtendeIA") || "[]"
-);
+let agendamentos =
+JSON.parse(localStorage.getItem("agendamentosAtendeIA") || "[]");
 
-let agendamentos = JSON.parse(
-    localStorage.getItem("agendamentosAtendeIA") || "[]"
-);
+let configIA =
+JSON.parse(localStorage.getItem("configIAAtendeIA") || "{}");
 
-let configIA = JSON.parse(
-    localStorage.getItem("configIAAtendeIA") || "{}"
-);
+let clinica =
+JSON.parse(localStorage.getItem("clinicaAtendeIA") || "{}");
 
-let clinica = JSON.parse(
-    localStorage.getItem("clinicaAtendeIA") || "{}"
-);
-
-
-/* =====================================================
-   ESTADO DO AGENDAMENTO
-===================================================== */
 
 let estadoAgendamento = {
     ativo:false,
@@ -401,10 +427,6 @@ let estadoAgendamento = {
     hora:""
 };
 
-
-/* =====================================================
-   HORÁRIOS
-===================================================== */
 
 const horariosDisponiveis = [
     "08:00",
@@ -421,78 +443,93 @@ const horariosDisponiveis = [
 ];
 
 
-/* =====================================================
-   INICIALIZAÇÃO
-===================================================== */
+function normalizarTexto(texto){
 
-document.addEventListener("DOMContentLoaded",function(){
+    return texto
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g,"")
+    .trim();
 
-    carregarDados();
-
-    renderizarServicos();
-
-    renderizarAgendamentos();
-
-    atualizarResumo();
-
-    atualizarSelectServicos();
-
-    iniciarChat();
-
-});
-
-
-/* =====================================================
-   CARREGAR DADOS
-===================================================== */
-
-function carregarDados(){
-
-    if(clinica.nome)
-        document.getElementById("nomeClinica").value=clinica.nome;
-
-    if(clinica.telefone)
-        document.getElementById("telefoneClinica").value=clinica.telefone;
-
-    if(clinica.endereco)
-        document.getElementById("enderecoClinica").value=clinica.endereco;
-
-    if(clinica.horario)
-        document.getElementById("horarioClinica").value=clinica.horario;
-
-    if(configIA.nome)
-        document.getElementById("nomeIA").value=configIA.nome;
-
-    if(configIA.mensagemInicial)
-        document.getElementById("mensagemInicial").value=configIA.mensagemInicial;
-
-    if(configIA.instrucoes)
-        document.getElementById("instrucoesIA").value=configIA.instrucoes;
-
-
-    if(servicos.length===0){
-
-        servicos.push({
-            nome:"Tratamento",
-            valor:"120,00"
-        });
-
-        salvarServicos();
-    }
 }
 
 
-/* =====================================================
-   CLÍNICA
-===================================================== */
+function formatarMoeda(valor){
+
+    return Number(valor || 0).toLocaleString(
+        "pt-BR",
+        {
+            style:"currency",
+            currency:"BRL"
+        }
+    );
+
+}
+
+
+function dataHoje(){
+
+    let d = new Date();
+
+    let ano = d.getFullYear();
+
+    let mes = String(d.getMonth()+1).padStart(2,"0");
+
+    let dia = String(d.getDate()).padStart(2,"0");
+
+    return `${ano}-${mes}-${dia}`;
+}
+
+
+function formatarData(data){
+
+    if(!data) return "";
+
+    let partes = data.split("-");
+
+    if(partes.length !== 3) return data;
+
+    return `${partes[2]}/${partes[1]}/${partes[0]}`;
+}
+
+
+function converterDataParaISO(texto){
+
+    texto = texto.trim();
+
+    if(/^\d{4}-\d{2}-\d{2}$/.test(texto)){
+        return texto;
+    }
+
+    if(/^\d{2}\/\d{2}\/\d{4}$/.test(texto)){
+
+        let p = texto.split("/");
+
+        return `${p[2]}-${p[1]}-${p[0]}`;
+    }
+
+    return null;
+}
+
+
+function dataPassou(data){
+
+    return data < dataHoje();
+}
+
 
 function salvarClinica(){
 
-    clinica={
+    clinica = {
+
         nome:document.getElementById("nomeClinica").value.trim(),
+
         telefone:document.getElementById("telefoneClinica").value.trim(),
+
         endereco:document.getElementById("enderecoClinica").value.trim(),
+
         horario:document.getElementById("horarioClinica").value.trim()
+
     };
 
     localStorage.setItem(
@@ -500,29 +537,40 @@ function salvarClinica(){
         JSON.stringify(clinica)
     );
 
-    adicionarMensagem(
-        "ana",
-        "Os dados da clínica foram atualizados com sucesso. 😊"
-    );
+    alert("Dados da clínica salvos!");
 
-    atualizarResumo();
 }
 
 
-/* =====================================================
-   CONFIGURAÇÃO IA
-===================================================== */
+function carregarClinica(){
+
+    document.getElementById("nomeClinica").value =
+    clinica.nome || "";
+
+    document.getElementById("telefoneClinica").value =
+    clinica.telefone || "";
+
+    document.getElementById("enderecoClinica").value =
+    clinica.endereco || "";
+
+    document.getElementById("horarioClinica").value =
+    clinica.horario || "08:00 às 18:00";
+}
+
 
 function salvarConfigIA(){
 
-    configIA={
-        nome:document.getElementById("nomeIA").value.trim() || "Ana",
+    configIA = {
 
-        mensagemInicial:
+        nome:
+        document.getElementById("nomeIA").value.trim() || "Ana",
+
+        mensagem:
         document.getElementById("mensagemInicial").value.trim(),
 
         instrucoes:
         document.getElementById("instrucoesIA").value.trim()
+
     };
 
     localStorage.setItem(
@@ -530,148 +578,227 @@ function salvarConfigIA(){
         JSON.stringify(configIA)
     );
 
-    alert("Configuração da Ana salva com sucesso!");
+    document.getElementById("nomeAnaChat").innerText =
+    configIA.nome || "Ana";
 
-    reiniciarChat();
+    alert("Configuração da Ana salva!");
+
 }
 
 
-/* =====================================================
-   SERVIÇOS
-===================================================== */
+function carregarConfigIA(){
+
+    document.getElementById("nomeIA").value =
+    configIA.nome || "Ana";
+
+    document.getElementById("mensagemInicial").value =
+    configIA.mensagem ||
+    "Olá! Seja bem-vinda à nossa clínica! 😊 Sou a Ana, assistente virtual. Posso ajudar você com informações sobre nossos serviços, valores e agendamentos. Como posso ajudar você hoje?";
+
+    document.getElementById("instrucoesIA").value =
+    configIA.instrucoes ||
+    "Seja cordial, profissional e natural. Informe serviços, valores, horários, endereço e WhatsApp cadastrados. Ajude clientes com agendamentos. Não invente informações. Não repita a mesma resposta sem necessidade.";
+
+    document.getElementById("nomeAnaChat").innerText =
+    configIA.nome || "Ana";
+}
+
 
 function adicionarServico(){
 
-    const nome=
-        document.getElementById("nomeServico").value.trim();
+    let nome =
+    document.getElementById("nomeServico").value.trim();
 
-    let valor=
-        document.getElementById("valorServico").value.trim();
+    let preco =
+    document.getElementById("precoServico").value;
 
-    if(!nome || !valor){
+    if(!nome){
 
-        alert("Preencha o nome e o valor.");
+        alert("Digite o nome do serviço.");
 
         return;
     }
 
-    valor=valor.replace("R$","").trim();
-
     servicos.push({
+
         nome:nome,
-        valor:valor
+
+        preco:Number(preco || 0)
+
     });
-
-    salvarServicos();
-
-    document.getElementById("nomeServico").value="";
-    document.getElementById("valorServico").value="";
-
-    renderizarServicos();
-    atualizarSelectServicos();
-    atualizarResumo();
-}
-
-
-function salvarServicos(){
 
     localStorage.setItem(
         "servicosAtendeIA",
         JSON.stringify(servicos)
     );
+
+    document.getElementById("nomeServico").value = "";
+
+    document.getElementById("precoServico").value = "";
+
+    atualizarServicos();
+
 }
 
 
 function excluirServico(index){
 
-    if(!confirm("Deseja excluir este serviço?"))
-        return;
-
     servicos.splice(index,1);
 
-    salvarServicos();
+    localStorage.setItem(
+        "servicosAtendeIA",
+        JSON.stringify(servicos)
+    );
 
-    renderizarServicos();
-    atualizarSelectServicos();
-    atualizarResumo();
+    atualizarServicos();
 }
 
 
-function renderizarServicos(){
+function atualizarServicos(){
 
-    const lista=
-        document.getElementById("listaServicos");
+    let lista =
+    document.getElementById("listaServicos");
 
-    lista.innerHTML="";
+    lista.innerHTML = "";
 
-    if(servicos.length===0){
+    if(servicos.length === 0){
 
-        lista.innerHTML=
-        '<p class="pequeno">Nenhum serviço cadastrado.</p>';
+        servicos.push({
+            nome:"Tratamento",
+            preco:120
+        });
 
-        return;
+        localStorage.setItem(
+            "servicosAtendeIA",
+            JSON.stringify(servicos)
+        );
     }
 
-    servicos.forEach(function(servico,index){
 
-        const div=document.createElement("div");
+    servicos.forEach((s,index)=>{
 
-        div.className="servico-item";
+        let div = document.createElement("div");
 
-        div.innerHTML=`
-            <strong>${escaparHTML(servico.nome)}</strong><br>
-            Valor: <strong>R$ ${escaparHTML(servico.valor)}</strong>
-            <br><br>
-            <button class="btn-danger"
+        div.className = "item";
+
+        div.innerHTML = `
+            <strong>${s.nome}</strong><br>
+            ${formatarMoeda(s.preco)}
+            <button
+                class="btn-excluir"
                 onclick="excluirServico(${index})">
-                🗑️ Excluir
+                Excluir
             </button>
         `;
 
         lista.appendChild(div);
+
     });
+
+
+    atualizarSelectServicos();
+
+    atualizarResumo();
+
 }
 
 
 function atualizarSelectServicos(){
 
-    const select=
-        document.getElementById("servicoManual");
+    let select =
+    document.getElementById("servicoManual");
 
-    select.innerHTML=
-        '<option value="">Selecione o serviço</option>';
+    select.innerHTML =
+    '<option value="">Selecione o serviço</option>';
 
-    servicos.forEach(function(servico){
+    servicos.forEach(s=>{
 
-        const option=document.createElement("option");
+        let option =
+        document.createElement("option");
 
-        option.value=servico.nome;
+        option.value = s.nome;
 
-        option.textContent=
-            servico.nome+" - R$ "+servico.valor;
+        option.textContent =
+        `${s.nome} - ${formatarMoeda(s.preco)}`;
 
         select.appendChild(option);
+
     });
 }
 
 
-/* =====================================================
-   AGENDAMENTO MANUAL
-===================================================== */
+function servicoExiste(nome){
 
-function adicionarAgendamentoManual(){
+    let busca = normalizarTexto(nome);
 
-    const paciente=
-        document.getElementById("pacienteManual").value.trim();
+    return servicos.find(
+        s => normalizarTexto(s.nome) === busca
+    );
+}
 
-    const data=
-        document.getElementById("dataManual").value;
 
-    const hora=
-        document.getElementById("horaManual").value;
+function horarioOcupado(data,hora){
 
-    const servico=
-        document.getElementById("servicoManual").value;
+    return agendamentos.some(
+        a => a.data === data && a.hora === hora
+    );
+}
+
+
+function atualizarHorariosManual(){
+
+    let data =
+    document.getElementById("dataManual").value;
+
+    let select =
+    document.getElementById("horaManual");
+
+    select.innerHTML =
+    '<option value="">Selecione o horário</option>';
+
+    if(!data) return;
+
+
+    horariosDisponiveis.forEach(hora=>{
+
+        let option =
+        document.createElement("option");
+
+        option.value = hora;
+
+        if(horarioOcupado(data,hora)){
+
+            option.textContent =
+            `${hora} - OCUPADO`;
+
+            option.disabled = true;
+
+        }else{
+
+            option.textContent = hora;
+        }
+
+        select.appendChild(option);
+
+    });
+
+}
+
+
+function salvarAgendamentoManual(){
+
+    let paciente =
+    document.getElementById("pacienteManual").value.trim();
+
+    let data =
+    document.getElementById("dataManual").value;
+
+    let hora =
+    document.getElementById("horaManual").value;
+
+    let servico =
+    document.getElementById("servicoManual").value;
+
 
     if(!paciente || !data || !hora || !servico){
 
@@ -680,289 +807,141 @@ function adicionarAgendamentoManual(){
         return;
     }
 
-    if(horarioOcupado(data,hora)){
 
-        alert("Este horário já está ocupado.");
+    if(dataPassou(data)){
 
-        atualizarHorariosManuais();
+        alert("Não é possível agendar uma data que já passou.");
 
         return;
     }
 
+
+    if(horarioOcupado(data,hora)){
+
+        alert("Este horário já está ocupado.");
+
+        atualizarHorariosManual();
+
+        return;
+    }
+
+
     agendamentos.push({
+
         paciente,
         data,
         hora,
-        servico,
-        criadoEm:new Date().toISOString()
+        servico
+
     });
 
-    salvarAgendamentos();
-
-    document.getElementById("pacienteManual").value="";
-    document.getElementById("dataManual").value="";
-
-    document.getElementById("horaManual").innerHTML=
-        '<option value="">Selecione uma data primeiro</option>';
-
-    document.getElementById("servicoManual").value="";
-
-    renderizarAgendamentos();
-    atualizarResumo();
-
-    alert("Agendamento realizado com sucesso!");
-}
-
-
-function salvarAgendamentos(){
 
     localStorage.setItem(
         "agendamentosAtendeIA",
         JSON.stringify(agendamentos)
     );
-}
 
 
-function excluirAgendamento(index){
+    alert(
+        `Agendamento realizado!\n\nPaciente: ${paciente}\nServiço: ${servico}\nData: ${formatarData(data)}\nHorário: ${hora}`
+    );
 
-    if(!confirm("Deseja excluir este agendamento?"))
-        return;
 
-    agendamentos.splice(index,1);
+    document.getElementById("pacienteManual").value = "";
 
-    salvarAgendamentos();
+    document.getElementById("dataManual").value = "";
 
-    renderizarAgendamentos();
+    document.getElementById("horaManual").innerHTML =
+    '<option value="">Selecione a data primeiro</option>';
+
+    document.getElementById("servicoManual").value = "";
+
+
     atualizarResumo();
 }
 
 
-function renderizarAgendamentos(){
+function adicionarMensagem(texto,tipo){
 
-    const lista=
-        document.getElementById("listaAgendamentos");
+    let chat =
+    document.getElementById("chatBody");
 
-    lista.innerHTML="";
+    let div =
+    document.createElement("div");
 
-    if(agendamentos.length===0){
+    div.className =
+    `mensagem ${tipo}`;
 
-        lista.innerHTML=
-        '<p class="pequeno">Nenhum agendamento cadastrado.</p>';
-
-        return;
-    }
-
-    const ordenados=[...agendamentos].sort(function(a,b){
-
-        return (a.data+a.hora)
-        .localeCompare(b.data+b.hora);
-
-    });
-
-    ordenados.forEach(function(item){
-
-        const index=agendamentos.indexOf(item);
-
-        const div=document.createElement("div");
-
-        div.className="agendamento-item";
-
-        div.innerHTML=`
-            👤 <strong>${escaparHTML(item.paciente)}</strong><br>
-            📅 ${formatarData(item.data)}<br>
-            🕐 ${escaparHTML(item.hora)}<br>
-            💆 ${escaparHTML(item.servico)}
-            <br><br>
-            <button class="btn-danger"
-                onclick="excluirAgendamento(${index})">
-                🗑️ Excluir
-            </button>
-        `;
-
-        lista.appendChild(div);
-    });
-}
-
-
-/* =====================================================
-   HORÁRIOS
-===================================================== */
-
-function horarioOcupado(data,hora){
-
-    return agendamentos.some(function(item){
-
-        return item.data===data &&
-               item.hora===hora;
-
-    });
-}
-
-
-function obterHorariosDisponiveis(data){
-
-    return horariosDisponiveis.filter(function(hora){
-
-        return !horarioOcupado(data,hora);
-
-    });
-}
-
-
-function atualizarHorariosManuais(){
-
-    const data=
-        document.getElementById("dataManual").value;
-
-    const select=
-        document.getElementById("horaManual");
-
-    select.innerHTML="";
-
-    if(!data){
-
-        select.innerHTML=
-        '<option value="">Selecione uma data primeiro</option>';
-
-        return;
-    }
-
-    const disponiveis=
-        obterHorariosDisponiveis(data);
-
-    if(disponiveis.length===0){
-
-        select.innerHTML=
-        '<option value="">Nenhum horário disponível</option>';
-
-        return;
-    }
-
-    select.innerHTML=
-    '<option value="">Selecione o horário</option>';
-
-    disponiveis.forEach(function(hora){
-
-        const option=document.createElement("option");
-
-        option.value=hora;
-        option.textContent=hora;
-
-        select.appendChild(option);
-    });
-}
-
-
-/* =====================================================
-   CHAT
-===================================================== */
-
-function iniciarChat(){
-
-    document.getElementById("chat").innerHTML="";
-
-    adicionarMensagem(
-        "ana",
-        configIA.mensagemInicial ||
-        "Olá! Seja bem-vinda à nossa clínica! 😊 Sou a Ana, assistente virtual. Posso ajudar você com informações sobre nossos serviços, valores e agendamentos. Como posso ajudar você hoje?"
-    );
-}
-
-
-function reiniciarChat(){
-
-    estadoAgendamento={
-        ativo:false,
-        etapa:"",
-        paciente:"",
-        servico:"",
-        data:"",
-        hora:""
-    };
-
-    iniciarChat();
-}
-
-
-function adicionarMensagem(tipo,texto){
-
-    const chat=document.getElementById("chat");
-
-    const div=document.createElement("div");
-
-    div.className="mensagem "+tipo;
-
-    const balao=document.createElement("div");
-
-    balao.className="balao";
-
-    balao.innerHTML=
-        escaparHTML(texto).replace(/\n/g,"<br>");
-
-    div.appendChild(balao);
+    div.textContent = texto;
 
     chat.appendChild(div);
 
-    chat.scrollTop=chat.scrollHeight;
+    chat.scrollTop = chat.scrollHeight;
+
 }
 
 
-function adicionarHTMLChat(html){
+function adicionarMensagemHTML(html,tipo){
 
-    const chat=document.getElementById("chat");
+    let chat =
+    document.getElementById("chatBody");
 
-    const div=document.createElement("div");
+    let div =
+    document.createElement("div");
 
-    div.className="mensagem ana";
+    div.className =
+    `mensagem ${tipo}`;
 
-    const balao=document.createElement("div");
-
-    balao.className="balao";
-
-    balao.innerHTML=html;
-
-    div.appendChild(balao);
+    div.innerHTML = html;
 
     chat.appendChild(div);
 
-    chat.scrollTop=chat.scrollHeight;
+    chat.scrollTop = chat.scrollHeight;
+
 }
 
 
 function enviarMensagem(){
 
-    const input=
-        document.getElementById("entradaChat");
+    let input =
+    document.getElementById("entradaChat");
 
-    const texto=input.value.trim();
+    let texto =
+    input.value.trim();
 
-    if(!texto)
-        return;
+    if(!texto) return;
 
-    adicionarMensagem("usuario",texto);
+    adicionarMensagem(texto,"usuario");
 
-    input.value="";
+    input.value = "";
 
-    responder(texto);
+    setTimeout(()=>{
+
+        responder(texto);
+
+    },300);
+
 }
 
 
-/* =====================================================
-   NOVO ATENDIMENTO INTELIGENTE
-===================================================== */
-
 function responder(texto){
 
-    const t=normalizarTexto(texto);
+    let t = normalizarTexto(texto);
 
-    /* AGENDAMENTO */
+
+    if(estadoAgendamento.ativo){
+
+        processarAgendamento(texto);
+
+        return;
+    }
+
 
     if(
         t.includes("agendar") ||
         t.includes("agendamento") ||
         t.includes("marcar") ||
-        t.includes("consulta") ||
-        t.includes("marcacao")
+        t.includes("consulta")
     ){
 
         iniciarAgendamento();
@@ -971,19 +950,13 @@ function responder(texto){
     }
 
 
-    /* PREÇO / SERVIÇOS */
-
     if(
         t.includes("preco") ||
-        t.includes("precos") ||
+        t.includes("preço") ||
         t.includes("valor") ||
-        t.includes("valores") ||
-        t.includes("quanto custa") ||
-        t.includes("quanto e") ||
         t.includes("servico") ||
-        t.includes("servicos") ||
         t.includes("tratamento") ||
-        t.includes("tratamentos")
+        t.includes("quanto custa")
     ){
 
         responderServicos();
@@ -992,15 +965,12 @@ function responder(texto){
     }
 
 
-    /* HORÁRIO */
-
     if(
         t.includes("horario") ||
-        t.includes("horarios") ||
-        t.includes("abre") ||
-        t.includes("fecha") ||
+        t.includes("horários") ||
         t.includes("atendimento") ||
-        t.includes("funciona")
+        t.includes("abre") ||
+        t.includes("fecha")
     ){
 
         responderHorario();
@@ -1009,13 +979,11 @@ function responder(texto){
     }
 
 
-    /* ENDEREÇO */
-
     if(
         t.includes("endereco") ||
         t.includes("onde fica") ||
         t.includes("localizacao") ||
-        t.includes("local")
+        t.includes("localização")
     ){
 
         responderEndereco();
@@ -1023,8 +991,6 @@ function responder(texto){
         return;
     }
 
-
-    /* WHATSAPP */
 
     if(
         t.includes("whatsapp") ||
@@ -1039,26 +1005,23 @@ function responder(texto){
     }
 
 
-    /* SAUDAÇÃO */
-
     if(
-        t==="oi" ||
-        t==="ola" ||
+        t === "oi" ||
+        t === "ola" ||
+        t === "olá" ||
         t.includes("bom dia") ||
         t.includes("boa tarde") ||
         t.includes("boa noite")
     ){
 
         adicionarMensagem(
-            "ana",
-            "Olá! 😊 Sou a Ana, assistente virtual. Como posso ajudar você hoje?"
+            "Olá! 😊 Seja muito bem-vinda. Sou a Ana, assistente virtual da nossa clínica. Posso ajudar com serviços, valores, horários e agendamentos.",
+            "ana"
         );
 
         return;
     }
 
-
-    /* AGRADECIMENTO */
 
     if(
         t.includes("obrigado") ||
@@ -1067,279 +1030,273 @@ function responder(texto){
     ){
 
         adicionarMensagem(
-            "ana",
-            "Por nada! 😊 Estou à disposição."
+            "Por nada! 😊 Estou à disposição para ajudar.",
+            "ana"
         );
 
         return;
     }
 
-
-    /* AJUDA */
 
     if(
         t.includes("ajuda") ||
-        t.includes("pode fazer") ||
-        t.includes("o que voce faz")
+        t.includes("o que voce faz") ||
+        t.includes("o que você faz")
     ){
 
         adicionarMensagem(
-            "ana",
-            "Posso ajudar você com:\n\n" +
-            "💰 Serviços e valores\n" +
-            "📅 Agendamentos\n" +
-            "🕐 Horários de atendimento\n" +
-            "📍 Endereço da clínica\n" +
-            "📱 WhatsApp e contato"
+            "Posso ajudar você com:\n\n• Serviços e valores\n• Horários de atendimento\n• Endereço da clínica\n• WhatsApp/telefone\n• Agendamento de atendimento",
+            "ana"
         );
 
         return;
     }
 
 
-    /* RESPOSTA NATURAL */
-
     adicionarMensagem(
-        "ana",
-        "Entendi. 😊 Posso ajudar você com serviços, valores, horários, endereço, contato ou agendamento. O que você precisa?"
+        "Entendi 😊 Posso ajudar você com serviços, valores, horários ou agendamento. O que você gostaria de saber?",
+        "ana"
     );
+
 }
 
-
-/* =====================================================
-   SERVIÇOS
-===================================================== */
 
 function responderServicos(){
 
-    if(servicos.length===0){
+    if(servicos.length === 0){
 
         adicionarMensagem(
-            "ana",
-            "No momento não há serviços cadastrados."
+            "No momento não há serviços cadastrados.",
+            "ana"
         );
 
         return;
     }
 
-    let resposta=
-        "Claro! 😊 Nossos serviços são:\n\n";
 
-    servicos.forEach(function(servico){
+    let texto =
+    "Claro! 😊 Estes são nossos serviços:\n\n";
 
-        resposta+=
-            "💆 "+servico.nome+
-            " — R$ "+servico.valor+"\n";
+    servicos.forEach(s=>{
+
+        texto +=
+        `• ${s.nome} — ${formatarMoeda(s.preco)}\n`;
+
     });
 
-    resposta+=
-        "\nSe desejar, também posso fazer seu agendamento.";
 
-    adicionarMensagem("ana",resposta);
+    texto +=
+    "\nSe quiser, posso também fazer um agendamento para você.";
+
+    adicionarMensagem(texto,"ana");
 }
 
-
-/* =====================================================
-   HORÁRIO
-===================================================== */
 
 function responderHorario(){
 
-    const horario=
-        clinica.horario ||
-        "08:00 às 18:00";
+    let horario =
+    clinica.horario || "08:00 às 18:00";
 
     adicionarMensagem(
-        "ana",
-        "🕐 Nosso horário de atendimento é das "+
-        horario+
-        ".\n\nOs agendamentos são realizados de 1 em 1 hora."
+        `Nosso horário de atendimento é das ${horario}. 😊\n\nOs horários disponíveis para agendamento são de hora em hora, das 08:00 às 18:00.`,
+        "ana"
     );
 }
 
-
-/* =====================================================
-   ENDEREÇO
-===================================================== */
 
 function responderEndereco(){
 
     if(!clinica.endereco){
 
         adicionarMensagem(
-            "ana",
-            "📍 O endereço ainda não foi cadastrado pela clínica."
+            "O endereço da clínica ainda não foi cadastrado no sistema.",
+            "ana"
         );
 
         return;
     }
 
+
     adicionarMensagem(
-        "ana",
-        "📍 Nosso endereço é:\n\n"+
-        clinica.endereco
+        `📍 Nosso endereço é:\n${clinica.endereco}`,
+        "ana"
     );
 }
 
-
-/* =====================================================
-   CONTATO
-===================================================== */
 
 function responderContato(){
 
     if(!clinica.telefone){
 
         adicionarMensagem(
-            "ana",
-            "📱 O telefone/WhatsApp ainda não foi cadastrado."
+            "O WhatsApp/telefone da clínica ainda não foi cadastrado.",
+            "ana"
         );
 
         return;
     }
 
+
     adicionarMensagem(
-        "ana",
-        "📱 Nosso WhatsApp/telefone para contato é:\n\n"+
-        clinica.telefone
+        `📱 Você pode falar conosco pelo WhatsApp/telefone:\n${clinica.telefone}`,
+        "ana"
     );
 }
 
-
-/* =====================================================
-   AGENDAMENTO
-===================================================== */
 
 function iniciarAgendamento(){
 
-    if(servicos.length===0){
+    estadoAgendamento = {
+
+        ativo:true,
+
+        etapa:"nome",
+
+        paciente:"",
+
+        servico:"",
+
+        data:"",
+
+        hora:""
+
+    };
+
+
+    adicionarMensagem(
+        "Claro! 😊 Vamos fazer seu agendamento.\n\nPrimeiro, qual é o seu nome?",
+        "ana"
+    );
+
+}
+
+
+function processarAgendamento(texto){
+
+    if(estadoAgendamento.etapa === "nome"){
+
+        estadoAgendamento.paciente =
+        texto.trim();
+
+        estadoAgendamento.etapa =
+        "servico";
+
+
+        let lista =
+        "Perfeito! 😊 Agora escolha o serviço:\n\n";
+
+        servicos.forEach((s,index)=>{
+
+            lista +=
+            `${index+1}. ${s.nome} — ${formatarMoeda(s.preco)}\n`;
+
+        });
+
 
         adicionarMensagem(
-            "ana",
-            "No momento não há serviços cadastrados para agendamento."
+            lista,
+            "ana"
         );
 
         return;
     }
 
-    estadoAgendamento={
-        ativo:true,
-        etapa:"nome",
-        paciente:"",
-        servico:"",
-        data:"",
-        hora:""
-    };
 
-    adicionarMensagem(
-        "ana",
-        "Perfeito! 😊 Vamos realizar seu agendamento.\n\nQual é o seu nome?"
-    );
-}
+    if(estadoAgendamento.etapa === "servico"){
+
+        let servico =
+        servicoExiste(texto);
 
 
-/* =====================================================
-   PROCESSAMENTO DO AGENDAMENTO
-===================================================== */
+        if(!servico){
 
-function processarAgendamento(texto){
+            let numero =
+            parseInt(texto);
 
-    if(estadoAgendamento.etapa==="nome"){
+            if(
+                !isNaN(numero) &&
+                numero >= 1 &&
+                numero <= servicos.length
+            ){
 
-        if(texto.trim().length<2){
+                servico =
+                servicos[numero-1];
 
-            adicionarMensagem(
-                "ana",
-                "Por favor, informe seu nome completo."
-            );
+            }
 
-            return;
         }
 
-        estadoAgendamento.paciente=texto.trim();
-
-        estadoAgendamento.etapa="servico";
-
-        let mensagem=
-            "Prazer! 😊\n\nQual serviço você deseja agendar?\n\n";
-
-        servicos.forEach(function(servico,index){
-
-            mensagem+=
-                (index+1)+
-                "️⃣ "+
-                servico.nome+
-                " — R$ "+
-                servico.valor+
-                "\n";
-        });
-
-        adicionarMensagem("ana",mensagem);
-
-        return;
-    }
-
-
-    if(estadoAgendamento.etapa==="servico"){
-
-        const servico=
-            encontrarServico(texto);
 
         if(!servico){
 
             adicionarMensagem(
-                "ana",
-                "Não consegui identificar o serviço. Escolha uma das opções abaixo:"
+                "Não encontrei esse serviço. Por favor, escolha um dos serviços apresentados.",
+                "ana"
             );
-
-            responderServicos();
 
             return;
         }
 
-        estadoAgendamento.servico=servico.nome;
 
-        estadoAgendamento.etapa="data";
+        estadoAgendamento.servico =
+        servico.nome;
+
+        estadoAgendamento.etapa =
+        "data";
+
 
         adicionarMensagem(
-            "ana",
-            "Ótimo! 😊 Você escolheu "+
-            servico.nome+
-            ".\n\nQual data você deseja? Informe no formato DD/MM/AAAA."
+            "Ótimo! 📅 Agora informe a data desejada.\n\nVocê pode digitar no formato DD/MM/AAAA.",
+            "ana"
         );
+
+
+        mostrarDatasNoChat();
 
         return;
     }
 
 
-    if(estadoAgendamento.etapa==="data"){
+    if(estadoAgendamento.etapa === "data"){
 
-        const data=
-            converterDataParaISO(texto);
+        let data =
+        converterDataParaISO(texto);
+
 
         if(!data){
 
             adicionarMensagem(
-                "ana",
-                "Não consegui entender a data. Informe no formato DD/MM/AAAA.\n\nExemplo: 20/09/2026"
+                "Não consegui identificar a data. Digite, por exemplo: 20/09/2026.",
+                "ana"
             );
 
             return;
         }
+
 
         if(dataPassou(data)){
 
             adicionarMensagem(
-                "ana",
-                "Essa data já passou. Por favor, escolha uma data de hoje em diante."
+                "Essa data já passou. Por favor, escolha uma data de hoje em diante.",
+                "ana"
             );
 
             return;
         }
 
-        estadoAgendamento.data=data;
 
-        estadoAgendamento.etapa="hora";
+        estadoAgendamento.data =
+        data;
+
+        estadoAgendamento.etapa =
+        "hora";
+
+
+        adicionarMensagem(
+            `Data escolhida: ${formatarData(data)}.\n\nAgora escolha um horário disponível:`,
+            "ana"
+        );
+
 
         mostrarHorariosNoChat(data);
 
@@ -1347,16 +1304,31 @@ function processarAgendamento(texto){
     }
 
 
-    if(estadoAgendamento.etapa==="hora"){
+    if(estadoAgendamento.etapa === "hora"){
 
-        const hora=
-            normalizarHora(texto);
+        let hora =
+        normalizarHora(texto);
+
 
         if(!hora){
 
             adicionarMensagem(
-                "ana",
-                "Informe um horário válido entre 08:00 e 18:00."
+                "Escolha um dos horários disponíveis apresentados acima.",
+                "ana"
+            );
+
+            return;
+        }
+
+
+        if(horarioOcupado(
+            estadoAgendamento.data,
+            hora
+        )){
+
+            adicionarMensagem(
+                "Esse horário acabou de ser ocupado. Por favor, escolha outro.",
+                "ana"
             );
 
             mostrarHorariosNoChat(
@@ -1366,21 +1338,33 @@ function processarAgendamento(texto){
             return;
         }
 
-        selecionarHorarioChat(hora);
+
+        estadoAgendamento.hora =
+        hora;
+
+        estadoAgendamento.etapa =
+        "confirmacao";
+
+
+        adicionarMensagem(
+            `Confira seu agendamento:\n\n👤 Nome: ${estadoAgendamento.paciente}\n💼 Serviço: ${estadoAgendamento.servico}\n📅 Data: ${formatarData(estadoAgendamento.data)}\n⏰ Horário: ${estadoAgendamento.hora}\n\nDeseja confirmar? Digite SIM ou NÃO.`,
+            "ana"
+        );
 
         return;
     }
 
 
-    if(estadoAgendamento.etapa==="confirmacao"){
+    if(estadoAgendamento.etapa === "confirmacao"){
 
-        const resposta=
-            normalizarTexto(texto);
+        let resposta =
+        normalizarTexto(texto);
+
 
         if(
-            resposta==="sim" ||
-            resposta==="s" ||
-            resposta.includes("confirm")
+            resposta === "sim" ||
+            resposta === "s" ||
+            resposta.includes("confirmo")
         ){
 
             confirmarAgendamento();
@@ -1388,543 +1372,362 @@ function processarAgendamento(texto){
             return;
         }
 
+
         if(
-            resposta==="nao" ||
-            resposta==="n" ||
-            resposta.includes("cancel")
+            resposta === "nao" ||
+            resposta === "n"
         ){
 
-            cancelarAgendamento();
+            estadoAgendamento.ativo = false;
+
+            adicionarMensagem(
+                "Tudo bem 😊 O agendamento foi cancelado. Se quiser, podemos começar novamente.",
+                "ana"
+            );
 
             return;
         }
 
-        adicionarMensagem(
-            "ana",
-            "Por favor, responda SIM para confirmar ou NÃO para cancelar."
-        );
-    }
-}
-
-
-/* =====================================================
-   HORÁRIOS NO CHAT
-===================================================== */
-
-function mostrarHorariosNoChat(data){
-
-    const disponiveis=
-        obterHorariosDisponiveis(data);
-
-    if(disponiveis.length===0){
 
         adicionarMensagem(
-            "ana",
-            "Poxa! 😔 Todos os horários dessa data já estão ocupados.\n\nPor favor, escolha outra data."
+            "Por favor, responda SIM para confirmar ou NÃO para cancelar.",
+            "ana"
         );
-
-        adicionarHTMLChat(`
-            <div class="acao-data">
-                <button
-                    class="btn-outra-data"
-                    onclick="escolherOutraData()">
-                    📅 Escolher outra data
-                </button>
-            </div>
-        `);
-
-        return;
     }
 
-    adicionarMensagem(
-        "ana",
-        "Perfeito! 😊\n\nHorários disponíveis para "+
-        formatarData(data)+
-        ":\n\nEscolha um horário:"
-    );
-
-    const div=document.createElement("div");
-
-    div.className="mensagem ana";
-
-    const balao=document.createElement("div");
-
-    balao.className="balao";
-
-    const horarios=document.createElement("div");
-
-    horarios.className="horarios-chat";
-
-    disponiveis.forEach(function(hora){
-
-        const botao=document.createElement("button");
-
-        botao.className="horario-btn";
-
-        botao.textContent=hora;
-
-        botao.onclick=function(){
-
-            selecionarHorarioChat(hora);
-
-        };
-
-        horarios.appendChild(botao);
-    });
-
-    balao.appendChild(horarios);
-
-    const texto=document.createElement("div");
-
-    texto.className="pequeno";
-
-    texto.textContent=
-        "Você também pode digitar o horário.";
-
-    balao.appendChild(texto);
-
-    div.appendChild(balao);
-
-    document.getElementById("chat")
-        .appendChild(div);
-
-    document.getElementById("chat").scrollTop=
-        document.getElementById("chat").scrollHeight;
-}
-
-
-/* =====================================================
-   SELECIONAR HORÁRIO
-===================================================== */
-
-function selecionarHorarioChat(hora){
-
-    if(estadoAgendamento.etapa!=="hora")
-        return;
-
-    if(!horariosDisponiveis.includes(hora)){
-
-        adicionarMensagem(
-            "ana",
-            "Esse horário não está disponível."
-        );
-
-        mostrarHorariosNoChat(
-            estadoAgendamento.data
-        );
-
-        return;
-    }
-
-    if(
-        horarioOcupado(
-            estadoAgendamento.data,
-            hora
-        )
-    ){
-
-        adicionarMensagem(
-            "ana",
-            "Esse horário acabou de ser ocupado. 😔 Escolha outro horário."
-        );
-
-        mostrarHorariosNoChat(
-            estadoAgendamento.data
-        );
-
-        return;
-    }
-
-    estadoAgendamento.hora=hora;
-
-    adicionarMensagem("usuario",hora);
-
-    estadoAgendamento.etapa="confirmacao";
-
-    mostrarConfirmacao();
-}
-
-
-/* =====================================================
-   OUTRA DATA
-===================================================== */
-
-function escolherOutraData(){
-
-    estadoAgendamento.etapa="data";
-
-    adicionarMensagem(
-        "ana",
-        "Claro! 😊 Qual nova data você deseja? Informe no formato DD/MM/AAAA."
-    );
-}
-
-
-/* =====================================================
-   CONFIRMAÇÃO
-===================================================== */
-
-function mostrarConfirmacao(){
-
-    const servico=
-        servicos.find(function(item){
-
-            return item.nome===
-                estadoAgendamento.servico;
-
-        });
-
-    const valor=
-        servico ? servico.valor : "";
-
-    const texto=
-        "Confira seu agendamento:\n\n"+
-        "👤 Paciente: "+
-        estadoAgendamento.paciente+
-        "\n\n"+
-        "💆 Serviço: "+
-        estadoAgendamento.servico+
-        "\n"+
-        "💰 Valor: R$ "+
-        valor+
-        "\n\n"+
-        "📅 Data: "+
-        formatarData(estadoAgendamento.data)+
-        "\n"+
-        "🕐 Horário: "+
-        estadoAgendamento.hora+
-        "\n\n"+
-        "Deseja confirmar o agendamento?";
-
-    adicionarMensagem("ana",texto);
-
-    adicionarHTMLChat(`
-        <div class="botoes-confirmacao">
-
-            <button class="btn-success"
-                onclick="confirmarAgendamento()">
-                ✅ SIM
-            </button>
-
-            <button class="btn-danger"
-                onclick="cancelarAgendamento()">
-                ❌ NÃO
-            </button>
-
-        </div>
-    `);
-}
-
-
-/* =====================================================
-   CONFIRMAR
-===================================================== */
-
-function confirmarAgendamento(){
-
-    if(
-        horarioOcupado(
-            estadoAgendamento.data,
-            estadoAgendamento.hora
-        )
-    ){
-
-        adicionarMensagem(
-            "ana",
-            "Esse horário acabou de ser ocupado. 😔 Vou mostrar os horários disponíveis novamente."
-        );
-
-        estadoAgendamento.etapa="hora";
-
-        mostrarHorariosNoChat(
-            estadoAgendamento.data
-        );
-
-        return;
-    }
-
-    const paciente=
-        estadoAgendamento.paciente;
-
-    const servico=
-        estadoAgendamento.servico;
-
-    const data=
-        estadoAgendamento.data;
-
-    const hora=
-        estadoAgendamento.hora;
-
-    agendamentos.push({
-        paciente,
-        servico,
-        data,
-        hora,
-        criadoEm:new Date().toISOString()
-    });
-
-    salvarAgendamentos();
-
-    estadoAgendamento={
-        ativo:false,
-        etapa:"",
-        paciente:"",
-        servico:"",
-        data:"",
-        hora:""
-    };
-
-    renderizarAgendamentos();
-    atualizarResumo();
-
-    adicionarMensagem(
-        "ana",
-        "🎉 Agendamento confirmado com sucesso!\n\n"+
-        "👤 "+paciente+"\n"+
-        "💆 "+servico+"\n"+
-        "📅 "+formatarData(data)+"\n"+
-        "🕐 "+hora+
-        "\n\nAgradecemos pela preferência! 😊"
-    );
-}
-
-
-/* =====================================================
-   CANCELAR
-===================================================== */
-
-function cancelarAgendamento(){
-
-    estadoAgendamento={
-        ativo:false,
-        etapa:"",
-        paciente:"",
-        servico:"",
-        data:"",
-        hora:""
-    };
-
-    adicionarMensagem(
-        "ana",
-        "Tudo bem! 😊 O agendamento foi cancelado. Estou à disposição se precisar."
-    );
-}
-
-
-/* =====================================================
-   ENCONTRAR SERVIÇO
-===================================================== */
-
-function encontrarServico(texto){
-
-    const normalizado=
-        normalizarTexto(texto);
-
-    const numero=
-        parseInt(texto.trim());
-
-    if(
-        !isNaN(numero) &&
-        numero>=1 &&
-        numero<=servicos.length
-    ){
-
-        return servicos[numero-1];
-    }
-
-    return servicos.find(function(servico){
-
-        return normalizarTexto(servico.nome)===
-            normalizado;
-
-    }) ||
-    servicos.find(function(servico){
-
-        return normalizarTexto(servico.nome)
-            .includes(normalizado);
-
-    });
-}
-
-
-/* =====================================================
-   UTILITÁRIOS
-===================================================== */
-
-function normalizarTexto(texto){
-
-    return texto
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g,"")
-        .trim();
 }
 
 
 function normalizarHora(texto){
 
-    let hora=
-        texto
-        .toLowerCase()
-        .trim()
-        .replace("h",":")
-        .replace(".",":");
+    let t =
+    normalizarTexto(texto)
+    .replace("h",":")
+    .replace(".",":");
 
-    const partes=hora.split(":");
 
-    if(partes.length!==2)
+    if(/^\d{1,2}$/.test(t)){
+
+        t =
+        String(parseInt(t)).padStart(2,"0") + ":00";
+
+    }
+
+
+    if(!/^\d{1,2}:\d{2}$/.test(t)){
+
         return null;
+    }
 
-    const h=parseInt(partes[0]);
-    const m=parseInt(partes[1]);
+
+    let p =
+    t.split(":");
+
+
+    let hora =
+    String(parseInt(p[0])).padStart(2,"0");
+
+    let minuto =
+    p[1];
+
+
+    let resultado =
+    `${hora}:${minuto}`;
+
 
     if(
-        isNaN(h) ||
-        isNaN(m) ||
-        h<0 ||
-        h>23 ||
-        m<0 ||
-        m>59
-    )
-        return null;
+        !horariosDisponiveis.includes(resultado)
+    ){
 
-    const resultado=
-        String(h).padStart(2,"0")+
-        ":"+
-        String(m).padStart(2,"0");
-
-    if(!horariosDisponiveis.includes(resultado))
         return null;
+    }
+
 
     return resultado;
 }
 
 
-function converterDataParaISO(texto){
+function mostrarDatasNoChat(){
 
-    texto=texto.trim();
+    let hoje =
+    new Date();
 
-    const partes=texto.split("/");
+    let html =
+    '<div class="datas-chat">';
 
-    if(partes.length===3){
 
-        const dia=
-            partes[0].padStart(2,"0");
+    for(let i=0;i<7;i++){
 
-        const mes=
-            partes[1].padStart(2,"0");
+        let d =
+        new Date(hoje);
 
-        const ano=partes[2];
+        d.setDate(
+            hoje.getDate()+i
+        );
 
-        if(
-            ano.length!==4 ||
-            parseInt(mes)<1 ||
-            parseInt(mes)>12 ||
-            parseInt(dia)<1 ||
-            parseInt(dia)>31
-        )
-            return null;
 
-        const data=
-            ano+"-"+mes+"-"+dia;
+        let ano =
+        d.getFullYear();
 
-        const teste=
-            new Date(data+"T00:00:00");
+        let mes =
+        String(d.getMonth()+1).padStart(2,"0");
 
-        if(isNaN(teste.getTime()))
-            return null;
+        let dia =
+        String(d.getDate()).padStart(2,"0");
 
-        return data;
+
+        let iso =
+        `${ano}-${mes}-${dia}`;
+
+
+        let exibicao =
+        `${dia}/${mes}`;
+
+
+        html += `
+            <button
+                class="data-btn"
+                onclick="selecionarDataChat('${iso}')">
+                ${exibicao}
+            </button>
+        `;
+
     }
 
-    if(/^\d{4}-\d{2}-\d{2}$/.test(texto)){
 
-        const teste=
-            new Date(texto+"T00:00:00");
+    html += "</div>";
 
-        if(!isNaN(teste.getTime()))
-            return texto;
+
+    adicionarMensagemHTML(
+        html,
+        "ana"
+    );
+}
+
+
+function selecionarDataChat(data){
+
+    if(dataPassou(data)) return;
+
+
+    estadoAgendamento.data =
+    data;
+
+    estadoAgendamento.etapa =
+    "hora";
+
+
+    adicionarMensagem(
+        formatarData(data),
+        "usuario"
+    );
+
+
+    adicionarMensagem(
+        "Perfeito! Agora escolha um horário disponível:",
+        "ana"
+    );
+
+
+    mostrarHorariosNoChat(data);
+}
+
+
+function mostrarHorariosNoChat(data){
+
+    let html =
+    '<div class="horarios-chat">';
+
+
+    horariosDisponiveis.forEach(hora=>{
+
+        let ocupado =
+        horarioOcupado(data,hora);
+
+
+        html += `
+            <button
+                class="horario-btn ${ocupado ? "ocupado" : ""}"
+                ${ocupado ? "disabled" : ""}
+                onclick="selecionarHorarioChat('${hora}')">
+                ${hora}${ocupado ? " ✕" : ""}
+            </button>
+        `;
+
+    });
+
+
+    html += "</div>";
+
+
+    adicionarMensagemHTML(
+        html,
+        "ana"
+    );
+}
+
+
+function selecionarHorarioChat(hora){
+
+    if(horarioOcupado(
+        estadoAgendamento.data,
+        hora
+    )){
+
+        adicionarMensagem(
+            "Esse horário já está ocupado. Escolha outro.",
+            "ana"
+        );
+
+        mostrarHorariosNoChat(
+            estadoAgendamento.data
+        );
+
+        return;
     }
 
-    return null;
+
+    estadoAgendamento.hora =
+    hora;
+
+    estadoAgendamento.etapa =
+    "confirmacao";
+
+
+    adicionarMensagem(
+        hora,
+        "usuario"
+    );
+
+
+    adicionarMensagem(
+        `Confira seu agendamento:\n\n👤 Nome: ${estadoAgendamento.paciente}\n💼 Serviço: ${estadoAgendamento.servico}\n📅 Data: ${formatarData(estadoAgendamento.data)}\n⏰ Horário: ${estadoAgendamento.hora}\n\nDeseja confirmar? Digite SIM ou NÃO.`,
+        "ana"
+    );
 }
 
 
-function dataPassou(data){
+function confirmarAgendamento(){
 
-    const hoje=new Date();
+    if(horarioOcupado(
+        estadoAgendamento.data,
+        estadoAgendamento.hora
+    )){
 
-    hoje.setHours(0,0,0,0);
+        adicionarMensagem(
+            "Esse horário acabou de ser ocupado. Vamos escolher outro horário.",
+            "ana"
+        );
 
-    const escolhida=
-        new Date(data+"T00:00:00");
+        estadoAgendamento.etapa =
+        "hora";
 
-    return escolhida<hoje;
+        mostrarHorariosNoChat(
+            estadoAgendamento.data
+        );
+
+        return;
+    }
+
+
+    agendamentos.push({
+
+        paciente:
+        estadoAgendamento.paciente,
+
+        servico:
+        estadoAgendamento.servico,
+
+        data:
+        estadoAgendamento.data,
+
+        hora:
+        estadoAgendamento.hora
+
+    });
+
+
+    localStorage.setItem(
+        "agendamentosAtendeIA",
+        JSON.stringify(agendamentos)
+    );
+
+
+    adicionarMensagem(
+        `✅ Agendamento confirmado!\n\n👤 ${estadoAgendamento.paciente}\n💼 ${estadoAgendamento.servico}\n📅 ${formatarData(estadoAgendamento.data)}\n⏰ ${estadoAgendamento.hora}\n\nAguardamos você! 😊`,
+        "ana"
+    );
+
+
+    estadoAgendamento = {
+
+        ativo:false,
+
+        etapa:"",
+
+        paciente:"",
+
+        servico:"",
+
+        data:"",
+
+        hora:""
+
+    };
+
+
+    atualizarResumo();
 }
 
-
-function formatarData(data){
-
-    if(!data)
-        return "";
-
-    const partes=data.split("-");
-
-    if(partes.length!==3)
-        return data;
-
-    return partes[2]+"/"+
-           partes[1]+"/"+
-           partes[0];
-}
-
-
-function escaparHTML(texto){
-
-    return String(texto)
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
-}
-
-
-/* =====================================================
-   RESUMO
-===================================================== */
 
 function atualizarResumo(){
 
     document.getElementById("totalServicos")
-        .textContent=servicos.length;
+    .innerText = servicos.length;
+
 
     document.getElementById("totalAgendamentos")
-        .textContent=agendamentos.length;
+    .innerText = agendamentos.length;
 
-    const hoje=new Date();
 
-    const ano=hoje.getFullYear();
+    let hoje =
+    dataHoje();
 
-    const mes=
-        String(hoje.getMonth()+1).padStart(2,"0");
 
-    const dia=
-        String(hoje.getDate()).padStart(2,"0");
+    let totalHoje =
+    agendamentos.filter(
+        a => a.data === hoje
+    ).length;
 
-    const hojeISO=
-        ano+"-"+mes+"-"+dia;
-
-    const quantidade=
-        agendamentos.filter(function(item){
-
-            return item.data===hojeISO;
-
-        }).length;
 
     document.getElementById("agendamentosHoje")
-        .textContent=quantidade;
+    .innerText = totalHoje;
 }
+
+
+function iniciarChat(){
+
+    let mensagem =
+    configIA.mensagem ||
+    "Olá! Seja bem-vinda à nossa clínica! 😊 Sou a Ana, assistente virtual. Posso ajudar você com informações sobre nossos serviços, valores e agendamentos. Como posso ajudar você hoje?";
+
+
+    adicionarMensagem(
+        mensagem,
+        "ana"
+    );
+}
+
+
+carregarClinica();
+
+carregarConfigIA();
+
+atualizarServicos();
+
+atualizarResumo();
+
+iniciarChat();
 
 </script>
 
