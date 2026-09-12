@@ -1,78 +1,115 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AtendeIA - Clínicas</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AtendeIA - Gestão de Clínicas</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+<style>
+*{
+  box-sizing:border-box;
+  font-family:Arial,sans-serif;
+}
 
-    body {
-      margin: 0;
-      background: #f4f6f8;
-      color: #222;
-    }
+body{
+  margin:0;
+  background:#f3f6f9;
+  color:#222;
+}
 
-    header {
-      background: #1769aa;
-      color: white;
-      padding: 22px;
-      text-align: center;
-    }
+header{
+  background:#1769aa;
+  color:white;
+  padding:24px 18px;
+  text-align:center;
+}
 
-    header h1 {
-      margin: 0;
-      font-size: 28px;
-    }
+header h1{
+  margin:0;
+  font-size:30px;
+}
 
-    header p {
-      margin: 8px 0 0;
-    }
+header p{
+  margin:8px 0 0;
+}
 
-    .container {
-      max-width: 700px;
-      margin: 25px auto;
-      padding: 15px;
-    }
+.container{
+  max-width:760px;
+  margin:auto;
+  padding:18px;
+}
 
-    .card {
-      background: white;
-      border-radius: 15px;
-      padding: 20px;
-      margin-bottom: 15px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-    }
+.card{
+  background:white;
+  border-radius:16px;
+  padding:20px;
+  margin-bottom:16px;
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
 
-    .card h2 {
-      margin-top: 0;
-      color: #1769aa;
-    }
+.card h2{
+  margin-top:0;
+  color:#1769aa;
+}
 
-    button {
-      width: 100%;
-      padding: 14px;
-      margin-top: 10px;
-      border: none;
-      border-radius: 10px;
-      background: #1769aa;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-    }
+input, textarea, select{
+  width:100%;
+  padding:13px;
+  margin:7px 0 12px;
+  border:1px solid #ccd4dc;
+  border-radius:9px;
+  font-size:15px;
+}
 
-    button:hover {
-      opacity: 0.9;
-    }
+button{
+  width:100%;
+  padding:14px;
+  margin-top:8px;
+  border:0;
+  border-radius:10px;
+  background:#1769aa;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
 
-    .status {
-      color: #16803c;
-      font-weight: bold;
-    }
-  </style>
+button.secundario{
+  background:#e8eef3;
+  color:#1769aa;
+}
+
+button.perigo{
+  background:#c62828;
+}
+
+.item{
+  border:1px solid #ddd;
+  border-radius:10px;
+  padding:12px;
+  margin-top:10px;
+}
+
+.status{
+  color:#16803c;
+  font-weight:bold;
+}
+
+.hidden{
+  display:none;
+}
+
+.menu{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+@media(max-width:500px){
+  .menu{
+    grid-template-columns:1fr;
+  }
+}
+</style>
 </head>
 
 <body>
@@ -84,39 +121,467 @@
 
 <div class="container">
 
-  <div class="card">
-    <h2>🏥 Minha Clínica</h2>
-    <p>Configure os dados da clínica e o atendimento automático.</p>
-    <button onclick="alert('Cadastro da clínica será criado na próxima versão.')">
-      Configurar clínica
-    </button>
-  </div>
+<div class="card">
+<h2>🏥 Dados da Clínica</h2>
 
-  <div class="card">
-    <h2>🤖 Atendente IA</h2>
-    <p class="status">● Sistema pronto para configuração</p>
-    <button onclick="alert('O treinamento da IA será configurado na próxima etapa.')">
-      Configurar IA
-    </button>
-  </div>
+<label>Nome da clínica</label>
+<input id="clinica" placeholder="Ex.: Clínica Saúde Mais">
 
-  <div class="card">
-    <h2>📋 Serviços</h2>
-    <p>Cadastre consultas, exames e outros serviços da clínica.</p>
-    <button onclick="alert('Cadastro de serviços será criado na próxima etapa.')">
-      Cadastrar serviços
-    </button>
-  </div>
+<label>Telefone / WhatsApp</label>
+<input id="telefone" placeholder="Ex.: (83) 99999-9999">
 
-  <div class="card">
-    <h2>📅 Agendamentos</h2>
-    <p>Organize os horários e atendimentos dos pacientes.</p>
-    <button onclick="alert('Sistema de agendamento será criado na próxima etapa.')">
-      Ver agendamentos
-    </button>
-  </div>
+<label>Endereço</label>
+<input id="endereco" placeholder="Endereço da clínica">
+
+<label>Horário de atendimento</label>
+<input id="horario" placeholder="Ex.: Segunda a sexta, 08h às 18h">
+
+<button onclick="salvarClinica()">Salvar dados da clínica</button>
+
+<p id="statusClinica"></p>
+</div>
+
+
+<div class="card">
+<h2>🤖 Configuração do Atendente IA</h2>
+
+<label>Nome do atendente</label>
+<input id="nomeIA" placeholder="Ex.: Ana">
+
+<label>Mensagem inicial</label>
+<textarea id="mensagemIA" rows="4"
+placeholder="Olá! Seja bem-vindo à nossa clínica. Como posso ajudar?"></textarea>
+
+<label>Instruções para o atendente</label>
+<textarea id="instrucoes" rows="5"
+placeholder="Informe horários, serviços, regras de atendimento e outras informações importantes."></textarea>
+
+<button onclick="salvarIA()">Salvar configuração da IA</button>
+
+<p id="statusIA"></p>
+</div>
+
+
+<div class="card">
+<h2>🩺 Serviços da Clínica</h2>
+
+<input id="servico" placeholder="Nome do serviço">
+<input id="preco" placeholder="Preço (ex.: R$ 150,00)">
+
+<button onclick="adicionarServico()">Adicionar serviço</button>
+
+<div id="listaServicos"></div>
+</div>
+
+
+<div class="card">
+<h2>📅 Agendamentos</h2>
+
+<label>Nome do paciente</label>
+<input id="paciente" placeholder="Nome completo">
+
+<label>Data</label>
+<input id="data" type="date">
+
+<label>Horário</label>
+<input id="hora" type="time">
+
+<label>Serviço</label>
+<input id="servicoAgendamento" placeholder="Ex.: Consulta">
+
+<button onclick="adicionarAgendamento()">Cadastrar agendamento</button>
+
+<div id="listaAgendamentos"></div>
+</div>
+
+
+<div class="card">
+<h2>💬 Simulador do Atendimento</h2>
+
+<p>Teste como o paciente poderá conversar com o atendente.</p>
+
+<div id="chat"
+style="background:#f1f3f5;padding:15px;border-radius:10px;min-height:120px;margin-bottom:10px;">
+<p><b>🤖 Atendente:</b> Olá! Como posso ajudar?</p>
+</div>
+
+<input id="pergunta" placeholder="Digite uma pergunta...">
+
+<button onclick="responder()">Enviar mensagem</button>
+</div>
+
+
+<div class="card">
+<h2>📊 Painel</h2>
+
+<div class="menu">
+<button onclick="mostrarResumo()">Ver resumo</button>
+<button class="secundario" onclick="limparDados()">Limpar dados</button>
+</div>
+
+<div id="resumo" style="margin-top:15px;"></div>
+</div>
 
 </div>
+
+
+<script>
+
+let servicos =
+JSON.parse(localStorage.getItem("servicosAtendeIA") || "[]");
+
+let agendamentos =
+JSON.parse(localStorage.getItem("agendamentosAtendeIA") || "[]");
+
+
+function salvarClinica(){
+
+  const dados = {
+    nome: document.getElementById("clinica").value,
+    telefone: document.getElementById("telefone").value,
+    endereco: document.getElementById("endereco").value,
+    horario: document.getElementById("horario").value
+  };
+
+  localStorage.setItem(
+    "clinicaAtendeIA",
+    JSON.stringify(dados)
+  );
+
+  document.getElementById("statusClinica").innerHTML =
+  "✅ Dados da clínica salvos com sucesso.";
+}
+
+
+function salvarIA(){
+
+  const dados = {
+    nome: document.getElementById("nomeIA").value,
+    mensagem: document.getElementById("mensagemIA").value,
+    instrucoes: document.getElementById("instrucoes").value
+  };
+
+  localStorage.setItem(
+    "configIAAtendeIA",
+    JSON.stringify(dados)
+  );
+
+  document.getElementById("statusIA").innerHTML =
+  "✅ Configuração do atendente salva.";
+}
+
+
+function adicionarServico(){
+
+  const nome =
+  document.getElementById("servico").value.trim();
+
+  const preco =
+  document.getElementById("preco").value.trim();
+
+  if(!nome){
+    alert("Digite o nome do serviço.");
+    return;
+  }
+
+  servicos.push({
+    nome:nome,
+    preco:preco
+  });
+
+  localStorage.setItem(
+    "servicosAtendeIA",
+    JSON.stringify(servicos)
+  );
+
+  document.getElementById("servico").value="";
+  document.getElementById("preco").value="";
+
+  mostrarServicos();
+}
+
+
+function mostrarServicos(){
+
+  const lista =
+  document.getElementById("listaServicos");
+
+  lista.innerHTML="";
+
+  servicos.forEach((s,index)=>{
+
+    lista.innerHTML += `
+      <div class="item">
+        <b>${s.nome}</b><br>
+        ${s.preco || "Preço não informado"}
+        <button class="perigo"
+        onclick="removerServico(${index})">
+        Remover
+        </button>
+      </div>
+    `;
+
+  });
+}
+
+
+function removerServico(index){
+
+  servicos.splice(index,1);
+
+  localStorage.setItem(
+    "servicosAtendeIA",
+    JSON.stringify(servicos)
+  );
+
+  mostrarServicos();
+}
+
+
+function adicionarAgendamento(){
+
+  const paciente =
+  document.getElementById("paciente").value.trim();
+
+  const data =
+  document.getElementById("data").value;
+
+  const hora =
+  document.getElementById("hora").value;
+
+  const servico =
+  document.getElementById("servicoAgendamento").value.trim();
+
+  if(!paciente || !data || !hora){
+    alert("Preencha paciente, data e horário.");
+    return;
+  }
+
+  agendamentos.push({
+    paciente:paciente,
+    data:data,
+    hora:hora,
+    servico:servico
+  });
+
+  localStorage.setItem(
+    "agendamentosAtendeIA",
+    JSON.stringify(agendamentos)
+  );
+
+  document.getElementById("paciente").value="";
+  document.getElementById("data").value="";
+  document.getElementById("hora").value="";
+  document.getElementById("servicoAgendamento").value="";
+
+  mostrarAgendamentos();
+}
+
+
+function mostrarAgendamentos(){
+
+  const lista =
+  document.getElementById("listaAgendamentos");
+
+  lista.innerHTML="";
+
+  agendamentos.forEach((a,index)=>{
+
+    lista.innerHTML += `
+      <div class="item">
+        <b>${a.paciente}</b><br>
+        📅 ${a.data} às ${a.hora}<br>
+        🩺 ${a.servico || "Serviço não informado"}
+
+        <button class="perigo"
+        onclick="removerAgendamento(${index})">
+        Cancelar
+        </button>
+      </div>
+    `;
+
+  });
+}
+
+
+function removerAgendamento(index){
+
+  agendamentos.splice(index,1);
+
+  localStorage.setItem(
+    "agendamentosAtendeIA",
+    JSON.stringify(agendamentos)
+  );
+
+  mostrarAgendamentos();
+}
+
+
+function responder(){
+
+  const pergunta =
+  document.getElementById("pergunta").value.trim();
+
+  if(!pergunta) return;
+
+  const chat =
+  document.getElementById("chat");
+
+  chat.innerHTML +=
+  `<p><b>👤 Você:</b> ${pergunta}</p>`;
+
+  let resposta =
+  "Posso ajudar com informações sobre a clínica, serviços e agendamentos.";
+
+  const p = pergunta.toLowerCase();
+
+  if(p.includes("preço") || p.includes("valor")){
+
+    if(servicos.length > 0){
+
+      resposta = "Nossos serviços disponíveis são:<br>";
+
+      servicos.forEach(s=>{
+        resposta +=
+        "• " + s.nome + " — " +
+        (s.preco || "consulte o valor") +
+        "<br>";
+      });
+
+    }else{
+      resposta =
+      "Ainda não temos serviços cadastrados.";
+    }
+  }
+
+  else if(
+    p.includes("horário") ||
+    p.includes("abre") ||
+    p.includes("funciona")
+  ){
+
+    const clinica =
+    JSON.parse(
+      localStorage.getItem("clinicaAtendeIA") || "{}"
+    );
+
+    resposta =
+    clinica.horario ||
+    "O horário da clínica ainda não foi cadastrado.";
+  }
+
+  else if(
+    p.includes("endereço") ||
+    p.includes("onde")
+  ){
+
+    const clinica =
+    JSON.parse(
+      localStorage.getItem("clinicaAtendeIA") || "{}"
+    );
+
+    resposta =
+    clinica.endereco ||
+    "O endereço ainda não foi cadastrado.";
+  }
+
+  chat.innerHTML +=
+  `<p><b>🤖 Atendente:</b> ${resposta}</p>`;
+
+  document.getElementById("pergunta").value="";
+
+  chat.scrollTop=chat.scrollHeight;
+}
+
+
+function mostrarResumo(){
+
+  const clinica =
+  JSON.parse(
+    localStorage.getItem("clinicaAtendeIA") || "{}"
+  );
+
+  const resumo =
+  document.getElementById("resumo");
+
+  resumo.innerHTML = `
+    <div class="item">
+      <b>🏥 Clínica:</b>
+      ${clinica.nome || "Não cadastrada"}
+    </div>
+
+    <div class="item">
+      <b>🩺 Serviços:</b>
+      ${servicos.length}
+    </div>
+
+    <div class="item">
+      <b>📅 Agendamentos:</b>
+      ${agendamentos.length}
+    </div>
+
+    <div class="item">
+      <b>🤖 Atendente:</b>
+      ${localStorage.getItem("configIAAtendeIA") ?
+      "Configurado" : "Não configurado"}
+    </div>
+  `;
+}
+
+
+function carregarDados(){
+
+  const clinica =
+  JSON.parse(
+    localStorage.getItem("clinicaAtendeIA") || "{}"
+  );
+
+  document.getElementById("clinica").value =
+  clinica.nome || "";
+
+  document.getElementById("telefone").value =
+  clinica.telefone || "";
+
+  document.getElementById("endereco").value =
+  clinica.endereco || "";
+
+  document.getElementById("horario").value =
+  clinica.horario || "";
+
+
+  const ia =
+  JSON.parse(
+    localStorage.getItem("configIAAtendeIA") || "{}"
+  );
+
+  document.getElementById("nomeIA").value =
+  ia.nome || "";
+
+  document.getElementById("mensagemIA").value =
+  ia.mensagem || "";
+
+  document.getElementById("instrucoes").value =
+  ia.instrucoes || "";
+
+  mostrarServicos();
+  mostrarAgendamentos();
+}
+
+
+function limparDados(){
+
+  if(confirm("Deseja realmente apagar os dados deste navegador?")){
+
+    localStorage.clear();
+
+    location.reload();
+  }
+}
+
+
+carregarDados();
+
+</script>
 
 </body>
 </html>
