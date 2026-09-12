@@ -1,0 +1,12 @@
+{
+  "name": "AtendeIA - Gestão de Clínicas",
+  "short_name": "AtendeIA",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#eef1f5",
+  "theme_color": "#075e54",
+  "description": "Sistema de gestão de clínica com Ana, assistente virtual.",
+  "lang": "pt-BR",
+  "orientation": "portrait"
+}
